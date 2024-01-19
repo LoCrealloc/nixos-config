@@ -1,0 +1,77 @@
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
+
+{ config, pkgs, lib, ... } :
+let
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec "$@"
+  '';
+in
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+
+  time.timeZone = "Europe/Berlin";
+
+  i18n.defaultLocale = "de_DE.UTF-8";
+  console = {
+    useXkbConfig = true;
+  };
+
+  hardware.bluetooth.enable = true;
+  security.rtkit.enable = true;
+ 
+  services.udev = {
+    packages = [
+      pkgs.android-udev-rules
+      pkgs.platformio-core
+      pkgs.openocd
+    ];
+  };
+  
+  programs.zsh.enable = true;
+
+ 	hardware.rtl-sdr.enable = true;
+
+  services.tumbler.enable = true;
+  services.gvfs.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  environment.systemPackages = [
+    nvidia-offload
+    pkgs.killall
+    pkgs.git
+    pkgs.pciutils
+    pkgs.zsh
+    pkgs.vim
+    pkgs.i3-gaps
+    pkgs.glxinfo
+    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; } )
+    pkgs.pulseaudio
+    pkgs.os-prober
+    pkgs.borgbackup
+    pkgs.qemu
+    pkgs.libvirt
+    pkgs.lutris
+    pkgs.wineWowPackages.stable
+  ];
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "22.05"; # Did you read the comment?
+
+}
+
