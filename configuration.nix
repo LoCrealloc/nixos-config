@@ -13,11 +13,6 @@ let
   '';
 in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "de_DE.UTF-8";
