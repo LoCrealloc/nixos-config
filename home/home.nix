@@ -23,119 +23,115 @@
   };
 
   home.packages = with pkgs; [
-  # communication
-  discord
-  signal-desktop
-  element-desktop
-	thunderbird
-	#mattermost-desktop
-	weechat
+		# communication
+		discord
+		signal-desktop
+		element-desktop
+		thunderbird
+		#mattermost-desktop
+		weechat
 
-	# browser
-	firefox
-	librewolf
-	tor-browser-bundle-bin
-	chromium
-	chromedriver
-    
-	# media
-  spotify  
-	spotify-tui
-	playerctl
-	pavucontrol
-	cava
-	glava
-	vlc
+		# browser
+		firefox
+		librewolf
+		tor-browser-bundle-bin
+		chromium
+			
+		# media
+		spotify  
+		spotify-tui
+		playerctl
+		pavucontrol
+		cava
+		glava
+		vlc
 
+		# infrastructure
+		gnupg
+		pinentry-curses
+		networkmanager-openvpn
+		networkmanagerapplet
+		#nextcloud-client
+		rofi
+		age
 
-  # infrastructure
-  gnupg
-	pinentry-curses
-	networkmanager-openvpn
-	networkmanagerapplet
-	#nextcloud-client
-	rofi
-	age
+		# development
+		python310
+		cargo
+		rustc
+		nodejs
+		sqlite
+		ccls
+		#gcc
+		clang
+		valgrind
 
-  # development
-  python310
-	cargo
-	rustc
-	nodejs
-	sqlite
-	ccls
-	#gcc
-	clang
-	valgrind
+		# IDEs & editors
+		neovim
+		jetbrains.pycharm-community
+		#jetbrains.webstorm
 
-  # IDEs & editors
-	neovim
-  jetbrains.pycharm-community
-  #jetbrains.webstorm
+		# media editing
+		darktable
+		gimp
+		nomacs
+		obs-studio
+		libgphoto2
+		gphoto2
+		ffmpeg
+		#blender
+		imagemagick
+		#scribus
+		#inkscape
+		audacity
+		#kdenlive
 
-	# media editing
-	darktable
-	gimp
-	nomacs
-	feh
-	obs-studio
-	libgphoto2
-	gphoto2
-	ffmpeg
-	#blender
-	imagemagick
-	#scribus
-	#inkscape
-	audacity
-	#kdenlive
+		# 3d printing / electronics
+		cura
+		freecad
+		openscad
+		#kicad
 
-  # 3d printing / electronics
-	cura
-	freecad
-	openscad
-	kicad
+		# miscellaneous
+		monero-gui
+		gnome.nautilus
+		xclip
+		scrot
+		zip
+		unzip
+		parted
+		sl
+		cmatrix
+		virt-manager
+		terminator
+		pdf2svg
 
-	# miscellaneous
-	monero-gui
-	gnome.nautilus
-	xclip
-	scrot
-	zip
-	unzip
-	parted
-	sl
-	cmatrix
-	virt-manager
-	terminator
-	pdf2svg
+		# documents
+		libreoffice
+		texlive.combined.scheme-full
+		mupdf
+		onlyoffice-bin
 
-	# documents
-	libreoffice
-	texlive.combined.scheme-full
-	mupdf
-	onlyoffice-bin
+		# fonts
+		google-fonts
 
-	# fonts
-	google-fonts
+		# shell
+		alacritty
+		htop
+		gtop
+		btop
+		powertop
+		calc
+		neofetch
 
-	# shell
-	alacritty
-	htop
-  gtop
-	btop
-	powertop
-	calc
-	neofetch
-
-	# GTK
-	gtk-engine-murrine
-	lxappearance
+		# GTK
+		gtk-engine-murrine
+		lxappearance
 
 
-	# games
-	openttd
-	prismlauncher
-
+		# games
+		openttd
+		prismlauncher
   ];
 
   programs.home-manager.enable = true;
