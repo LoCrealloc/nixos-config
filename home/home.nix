@@ -28,7 +28,6 @@
 		signal-desktop
 		element-desktop
 		thunderbird
-		#mattermost-desktop
 		weechat
 
 		# browser
@@ -45,6 +44,7 @@
 		cava
 		glava
 		vlc
+		sonixd
 
 		# infrastructure
 		gnupg
