@@ -14,11 +14,9 @@
 	  '';
     };
     shellAliases = {
-      tkn = "cat Desktop/fuchs_token.token";
-      pkgsearch = "nix --extra-experimental-features 'nix-command flakes' search nixpkgs";
-      connect_hetzner = "ssh loc@95.216.41.225";
+      pkgsearch = "nix search nixpkgs";
       connect_fuchs = "ssh admin@87.237.55.175";
-      update = "home-manager switch && rm ~/.cache/dmenu_run";
+			cpshot = "cp ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n1)";
     };
 	sessionVariables = {
       EDITOR = "nvim";
