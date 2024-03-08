@@ -1,10 +1,15 @@
-{pkgs, ...} : {
+{pkgs, config, lib, ...} : {
 	services.xserver = {
     videoDrivers = [ "nvidia" ];
 
     enable = true;
 
-    layout = "de";
+		xkb = {
+			layout = "de,de";
+			variant = "neo_qwertz,bone";
+			model = "pc105";
+			options = "grp:lwin_toggle";
+		};
 
     desktopManager = {
       xterm.enable = false;
@@ -62,6 +67,21 @@
     extraRules = ''
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
     '';
+	};
+
+	specialisation.gaming.configuration = {
+		system.nixos.tags = [ "gaming" ];
+
+		services.xserver.xkb = {
+			layout = lib.mkForce "de";
+			variant = lib.mkForce "";
+			options = lib.mkForce "";
+		};
+
+		hardware.nvidia.prime.offload.enable = lib.mkForce false;
+		hardware.nvidia.powerManagement.enable = lib.mkForce false;
+
+		hardware.nvidia.prime.sync.enable = lib.mkForce true;
 	};
 
 }
