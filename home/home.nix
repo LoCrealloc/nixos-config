@@ -19,7 +19,7 @@
     enable = true;
     defaultCacheTtl = 34560000;
     maxCacheTtl = 34560000;
-    pinentryFlavor = "tty";
+    pinentryPackage = pkgs.pinentry;
   };
 
   home.packages = with pkgs; [
@@ -38,7 +38,6 @@
 			
 		# media
 		spotify  
-		spotify-tui
 		playerctl
 		pavucontrol
 		cava
