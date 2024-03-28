@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }: {
@@ -11,6 +10,7 @@
     ./rofi.nix
     ./gtk.nix
     ./neovim.nix
+		./dunst.nix
   ];
 
   home.username = "loc";
