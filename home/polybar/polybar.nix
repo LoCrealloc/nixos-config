@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{pkgs, lib, config, ...}: let
   colors = {
     background = "#0f111a";
     foreground = "#ffffff";
@@ -21,7 +21,36 @@ in {
       pulseSupport = true;
       alsaSupport = true;
     };
-    settings = import ./modules.nix {colors = colors;};
-    script = "";
+    settings = import ./modules.nix {colors = colors; pkgs = pkgs; };
+    script = ''
+			pkill polybar
+
+			export DISPLAY=:0
+
+			count=0
+
+			out=$(polybar --list-monitors | cut -d":" -f1)
+
+			echo $out
+
+			for m in $out; do
+				count=$(($count+1))
+			done
+
+			echo $count
+
+			if [ $count == 3 ]; then
+				polybar --reload left &
+				polybar --reload middle &
+				polybar --reload right &
+			elif [ $count == 2 ]; then
+				polybar --reload left &
+				polybar --reload right &
+			else
+				polybar --reload mobile &
+			fi
+		'';
   };
+
+	systemd.user.services.polybar.Service.Environment = lib.mkForce "PATH=${config.services.polybar.package}/bin:${pkgs.coreutils}/bin:${pkgs.gnugrep}/bin:/run/wrappers/bin";
 }

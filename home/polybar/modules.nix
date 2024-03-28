@@ -1,4 +1,4 @@
-{colors}: {
+{ colors, pkgs }: {
   "base" = import ./bars/base.nix {colors = colors;};
   "bar/mobile" = import ./bars/mobile.nix;
   "bar/left" = import ./bars/left.nix;
@@ -16,5 +16,5 @@
   "module/fs-root" = import ./filesystem/fs-root.nix {colors = colors;};
   "module/github" = import ./github.nix {colors = colors;};
   "module/mattermost" = import ./mattermost.nix {colors = colors;};
-  "module/wireguard" = import ./wireguard.nix {colors = colors;};
+  "module/wireguard" = import ./wireguard.nix {colors = colors; pkgs = pkgs;};
 }

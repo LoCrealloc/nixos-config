@@ -274,15 +274,10 @@ in {
           always = true;
           notification = false;
         }
-        {
-          command = "dunst &";
-          always = true;
-          notification = false;
-        }
-        {
-          command = "/home/loc/.config/polybar/launch_polybar.sh";
-          always = true;
-        }
+        #{
+        #  command = "/home/loc/.config/polybar/launch_polybar.sh";
+        #  always = true;
+        #}
         {
           # Restore workspace 10 layout from saved file
           command = "i3-msg 'workspace 10; append_layout /home/loc/.config/i3/workspaces/10.json'";

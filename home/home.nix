@@ -127,6 +127,8 @@
     powertop
     calc
     neofetch
+		coreutils
+		gnugrep
 
     # GTK
     gtk-engine-murrine

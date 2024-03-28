@@ -3,6 +3,6 @@
   "inherit" = "base";
   "modules" = {
     left = "xworkspaces";
-    right = "mattermost github wireguard date";
+    right = "wireguard date";
   };
 }
