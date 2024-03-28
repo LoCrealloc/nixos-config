@@ -1,7 +1,10 @@
-# Polybar 
-
-{ config, lib, pkgs, ... }:
-let
+# Polybar
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   colors = {
     background = "#0f111a";
     foreground = "#ffffff";
@@ -15,17 +18,16 @@ let
     violet = "#945eb8";
     orange = "#f78c6c";
   };
-
 in {
   services.polybar = {
     enable = true;
-	package = pkgs.polybar.override {
+    package = pkgs.polybar.override {
       i3Support = true;
-	  githubSupport = true;
-	  pulseSupport = true;
-	  alsaSupport = true;
-	};
-	settings = (import ./modules.nix { colors = colors; } );
-	script = "";
+      githubSupport = true;
+      pulseSupport = true;
+      alsaSupport = true;
+    };
+    settings = import ./modules.nix {colors = colors;};
+    script = "";
   };
 }

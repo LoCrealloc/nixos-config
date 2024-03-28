@@ -1,9 +1,9 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... } :
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -11,8 +11,21 @@ let
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
-in
-{
+in {
+
+services.fprintd = {
+	enable = true;
+	tod.enable = true;
+	tod.driver = pkgs.libfprint-2-tod1-elan;
+};
+
+
+	services.ollama = {
+		enable = true;
+		acceleration = "cuda";
+	};
+	
+
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "de_DE.UTF-8";
@@ -23,23 +36,23 @@ in
 
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
- 
+
   services.udev = {
     packages = [
       pkgs.platformio-core
       pkgs.openocd
     ];
   };
-  
+
   programs.zsh.enable = true;
 
- 	hardware.rtl-sdr.enable = true;
+  hardware.rtl-sdr.enable = true;
 
   services.tumbler.enable = true;
   services.gvfs.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.systemPackages = [
     nvidia-offload
@@ -50,7 +63,7 @@ in
     pkgs.vim
     pkgs.i3-gaps
     pkgs.glxinfo
-    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; } )
+    (pkgs.nerdfonts.override {fonts = ["Hack"];})
     pkgs.pulseaudio
     pkgs.os-prober
     pkgs.borgbackup
@@ -61,6 +74,4 @@ in
   ];
 
   system.stateVersion = "22.05";
-
 }
-

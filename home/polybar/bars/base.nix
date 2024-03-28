@@ -1,6 +1,4 @@
-{ colors }:
-
-{
+{colors}: {
   wm-name = "i3";
   width = "100%";
   height = "55pt";
@@ -20,7 +18,7 @@
 
   separator-foreground = "${colors.border}";
 
-  font = [ "hack nerd font:size=18;2" "hack nerd font:size=25;2" ];
+  font = ["hack nerd font:size=18;2" "hack nerd font:size=25;2"];
 
   enable-ipc = true;
 }

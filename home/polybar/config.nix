@@ -1,6 +1,4 @@
 { colors }:
-
-
 {
   "base" = {
     wm-name = "i3";

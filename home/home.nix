@@ -1,6 +1,17 @@
-{ config, pkgs, ... } : {
-  
-  imports = [ ./zsh.nix ./git.nix ./i3.nix ./polybar/polybar.nix ./rofi.nix ./gtk.nix ];
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./zsh.nix
+    ./git.nix
+    ./i3.nix
+    ./polybar/polybar.nix
+    ./rofi.nix
+    ./gtk.nix
+    ./neovim.nix
+  ];
 
   home.username = "loc";
   home.homeDirectory = "/home/loc";
@@ -23,118 +34,115 @@
   };
 
   home.packages = with pkgs; [
-		# communication
-		discord
-		signal-desktop
-		element-desktop
-		thunderbird
-		weechat
+    # communication
+    discord
+    signal-desktop
+    element-desktop
+    thunderbird
+    weechat
 
-		# browser
-		firefox
-		librewolf
-		tor-browser-bundle-bin
-		chromium
-			
-		# media
-		spotify  
-		playerctl
-		pavucontrol
-		cava
-		glava
-		vlc
-		sonixd
+    # browser
+    firefox
+    librewolf
+    tor-browser-bundle-bin
+    chromium
 
-		# infrastructure
-		gnupg
-		pinentry-curses
-		networkmanager-openvpn
-		networkmanagerapplet
-		#nextcloud-client
-		rofi
-		age
+    # media
+    spotify
+    playerctl
+    pavucontrol
+    cava
+    glava
+    vlc
+    sonixd
 
-		# development
-		python310
-		cargo
-		rustc
-		nodejs
-		sqlite
-		ccls
-		#gcc
-		clang
-		valgrind
+    # infrastructure
+    gnupg
+    pinentry-curses
+    networkmanager-openvpn
+    networkmanagerapplet
+    #nextcloud-client
+    rofi
+    age
 
-		# IDEs & editors
-		neovim
-		jetbrains.pycharm-community
-		#jetbrains.webstorm
+    # development
+    python310
+    cargo
+    rustc
+    nodejs
+    sqlite
+    ccls
+    #gcc
+    clang
+    valgrind
 
-		# media editing
-		darktable
-		gimp
-		nomacs
-		obs-studio
-		libgphoto2
-		gphoto2
-		ffmpeg
-		#blender
-		imagemagick
-		#scribus
-		#inkscape
-		audacity
-		#kdenlive
+    # IDEs & editors
+    jetbrains.pycharm-community
+    #jetbrains.webstorm
 
-		# 3d printing / electronics
-		cura
-		freecad
-		openscad
-		#kicad
+    # media editing
+    darktable
+    gimp
+    nomacs
+    obs-studio
+    libgphoto2
+    gphoto2
+    ffmpeg
+    #blender
+    imagemagick
+    #scribus
+    #inkscape
+    audacity
+    #kdenlive
 
-		# miscellaneous
-		monero-gui
-		gnome.nautilus
-		xclip
-		scrot
-		zip
-		unzip
-		parted
-		sl
-		cmatrix
-		virt-manager
-		terminator
-		pdf2svg
+    # 3d printing / electronics
+    cura
+    freecad
+    openscad
+    #kicad
 
-		# documents
-		libreoffice
-		texlive.combined.scheme-full
-		mupdf
-		onlyoffice-bin
+    # miscellaneous
+    monero-gui
+    gnome.nautilus
+    xclip
+    scrot
+    zip
+    unzip
+    parted
+    sl
+    cmatrix
+    virt-manager
+    terminator
+    pdf2svg
 
-		# fonts
-		google-fonts
+    # documents
+    libreoffice
+    texlive.combined.scheme-full
+    mupdf
+    onlyoffice-bin
 
-		# shell
-		alacritty
-		htop
-		gtop
-		btop
-		powertop
-		calc
-		neofetch
+    # fonts
+    google-fonts
 
-		# GTK
-		gtk-engine-murrine
-		lxappearance
+    # shell
+    alacritty
+    htop
+    gtop
+    btop
+    powertop
+    calc
+    neofetch
 
+    # GTK
+    gtk-engine-murrine
+    lxappearance
 
-		# games
-		openttd
-		prismlauncher
+    # games
+    openttd
+    prismlauncher
   ];
 
   programs.home-manager.enable = true;
 
   services.network-manager-applet.enable = true;
-
- }
+}

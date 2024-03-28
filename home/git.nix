@@ -1,13 +1,16 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.git = {
     enable = true;
-	userName = "LoCrealloc";
-	userEmail = "loc@locrealloc.de";
-	signing = {
-	  signByDefault = true;
-	  key = "LoCrealloc <loc@locrealloc.de>";
-	};
+    userName = "LoCrealloc";
+    userEmail = "loc@locrealloc.de";
+    signing = {
+      signByDefault = true;
+      key = "LoCrealloc <loc@locrealloc.de>";
+    };
   };
 }

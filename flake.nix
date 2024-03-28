@@ -1,45 +1,56 @@
 {
   description = "LoC's system flake";
 
-	inputs = {
-		nixpkgs = {
-			url = github:NixOS/nixpkgs/nixos-unstable;
-		};
+  inputs = {
+    nixpkgs = {
+      url = github:NixOS/nixpkgs/nixos-unstable;
+    };
 
-		home-manager = {
+    home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-	};
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-		nixosConfigurations.locs-thinkbook = nixpkgs.lib.nixosSystem {
-			system = "x86_64-linux";
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    alejandra,
+    ...
+  } @ inputs: {
+    formatter."x86_64-linux" = alejandra.defaultPackage."x86_64-linux";
 
-			modules = [
-				home-manager.nixosModules.home-manager
-				{
-					home-manager.useGlobalPkgs = true;
+    nixosConfigurations.locs-thinkbook = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = inputs;
+
+      modules = [
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-				}
+        }
 
-				./configuration.nix
-				./hardware-configuration.nix
+        ./configuration.nix
+        ./hardware-configuration.nix
 
-				./boot.nix
-				./borg.nix
-				./cups.nix
-				./networking.nix
-				./nvidia.nix
-				./pam.nix
-				./pipewire.nix
-				./steam.nix
-				./users.nix
-				./virtualisation.nix
-				./xserver.nix
-			];
-		};
-
+        ./boot.nix
+        ./borg.nix
+        ./cups.nix
+        ./networking.nix
+        ./nvidia.nix
+        ./pam.nix
+        ./pipewire.nix
+        ./ssh.nix
+        ./steam.nix
+        ./users.nix
+        ./virtualisation.nix
+        ./xserver.nix
+      ];
+    };
   };
 }

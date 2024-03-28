@@ -1,4 +1,4 @@
-{pkgs, ...} : {
+{pkgs, ...}: {
   security.pam = {
     services = {
       login.u2fAuth = true;

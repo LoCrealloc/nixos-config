@@ -1,19 +1,16 @@
-{ colors }:
-
-{
+{colors}: {
   type = "custom/script";
   interval = "60";
 
   exec = "/home/loc/.config/polybar/polybar-scripts/github.sh";
 
-
   format = {
     prefix = {
-	  text = "%{T2}  󰊤  %{T-}";
-	  foreground = "${colors.background}";
-	  background = "${colors.primary}";
-	};
-	underline = "${colors.primary}";
+      text = "%{T2}  󰊤  %{T-}";
+      foreground = "${colors.background}";
+      background = "${colors.primary}";
+    };
+    underline = "${colors.primary}";
   };
 
   label = {

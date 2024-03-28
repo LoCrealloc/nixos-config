@@ -1,6 +1,4 @@
-{ colors }:
-
-{
+{colors}: {
   type = "internal/date";
   interval = "1";
 
@@ -11,11 +9,11 @@
 
   format = {
     prefix = {
-	  text = "%{T2}  󰃰  %{T-}";
-	  foreground = "${colors.background}";
-	  background = "${colors.violet}";
-	};
-	underline = "${colors.violet}";
+      text = "%{T2}  󰃰  %{T-}";
+      foreground = "${colors.background}";
+      background = "${colors.violet}";
+    };
+    underline = "${colors.violet}";
   };
 
   label = {

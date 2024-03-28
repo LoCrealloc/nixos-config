@@ -1,6 +1,4 @@
-{ colors }:
-
-{
+{colors}: {
   "inherit" = "fs-base";
   mount-0 = "/";
 
@@ -8,9 +6,9 @@
     mounted = {
       prefix = {
         foreground = "${colors.background}";
-		background = "${colors.primary}";
-	  };
-	  underline = "${colors.primary}";
-	};
+        background = "${colors.primary}";
+      };
+      underline = "${colors.primary}";
+    };
   };
 }
