@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }: let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
@@ -12,19 +10,10 @@
     exec "$@"
   '';
 in {
-
-services.fprintd = {
-	enable = true;
-	tod.enable = true;
-	tod.driver = pkgs.libfprint-2-tod1-elan;
-};
-
-
 	services.ollama = {
 		enable = true;
 		acceleration = "cuda";
 	};
-	
 
   time.timeZone = "Europe/Berlin";
 
