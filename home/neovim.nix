@@ -121,6 +121,9 @@
       cmp-cmdline
       vim-vsnip
       cmp-vsnip
+			cmp-zsh
+			cmp-nerdfont
+			cmp-vimtex
       friendly-snippets
       vim-ccls
       {
@@ -178,8 +181,11 @@
           	}),
           	sources = {
           		{ name = 'nvim_lsp' },
-          		{ name = 'vsnip' }, -- For vsnip users.
+          		{ name = 'vsnip' },
           		{ name = 'buffer' },
+          		{ name = 'zsh' },
+          		{ name = 'nerdfont' },
+          		{ name = 'vimtex' },
           	};
           })
 
