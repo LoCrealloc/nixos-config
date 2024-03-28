@@ -69,13 +69,11 @@
     nodejs
     sqlite
     ccls
-    #gcc
     clang
     valgrind
 
     # IDEs & editors
     jetbrains.pycharm-community
-    #jetbrains.webstorm
 
     # media editing
     darktable

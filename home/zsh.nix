@@ -12,8 +12,6 @@
       '';
     };
     shellAliases = {
-      pkgsearch = "nix search nixpkgs";
-      connect_fuchs = "ssh admin@87.237.55.175";
       cpshot = "cp ~/Pictures/screenshots/$(ls -t ~/Pictures/screenshots | head -n1)";
     };
     sessionVariables = {

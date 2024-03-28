@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   networking.hostName = "locs-thinkbook";
   networking.networkmanager.enable = true;
 

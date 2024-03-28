@@ -1,7 +1,5 @@
 {
   config,
-  lib,
-  pkgs,
   ...
 }: let
   inherit (config.lib.formats.rasi) mkLiteral;

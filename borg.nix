@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{
   services.borgbackup.jobs.loc-home = {
     paths = ["/home/loc"];
     encryption = {

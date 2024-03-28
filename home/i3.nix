@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -69,11 +68,6 @@ in {
         "${mod}+Shift+k" = "move down";
         "${mod}+Shift+l" = "move up";
         "${mod}+Shift+odiaeresis" = "move right";
-
-        #"${mod}+Shift+Left" = "move left";
-        #"${mod}+Shift+Down" = "move down";
-        #"${mod}+Shift+Up" = "move  up";
-        #"${mod}+Shift+Right" = "move right";
 
         # split horizontal
         "${mod}+h" = "split h";
