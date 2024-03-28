@@ -43,6 +43,7 @@
         ./cups.nix
         ./networking.nix
         ./nvidia.nix
+				./ollama.nix
         ./pam.nix
         ./pipewire.nix
         ./ssh.nix

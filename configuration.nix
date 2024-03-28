@@ -7,11 +7,6 @@
     exec "$@"
   '';
 in {
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
-
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "de_DE.UTF-8";
