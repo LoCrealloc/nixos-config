@@ -1,4 +1,20 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+
+	cmp-vimtex = (
+				pkgs.vimUtils.buildVimPlugin {
+					pname = "cmp-vimtex";
+					version = "2024-02-26";
+					src = pkgs.fetchFromGitHub {
+						owner = "micangl";
+						repo = "cmp-vimtex";
+						rev = "613fbfc54d9488252b0b0289d6d1d60242513558";
+						sha256 = "sha256-07FqXsRe0RP5f3b6osrsi5gai+bZi9ybm5JL/nnBH+4=";
+					};
+					meta.homepage = "https://github.com/micangl/cmp-vimtex";
+				}
+			);
+
+in {
   # lsp language servers
   home.packages = with pkgs; [
     nil
@@ -122,7 +138,6 @@
       vim-vsnip
       cmp-vsnip
 			cmp-zsh
-			cmp-nerdfont
 			cmp-vimtex
       friendly-snippets
       vim-ccls
@@ -184,7 +199,6 @@
           		{ name = 'vsnip' },
           		{ name = 'buffer' },
           		{ name = 'zsh' },
-          		{ name = 'nerdfont' },
           		{ name = 'vimtex' },
           	};
           })
