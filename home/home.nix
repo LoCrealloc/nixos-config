@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./zsh.nix
     ./git.nix
@@ -10,7 +7,7 @@
     ./rofi.nix
     ./gtk.nix
     ./neovim.nix
-		./dunst.nix
+    ./dunst.nix
   ];
 
   home.username = "loc";

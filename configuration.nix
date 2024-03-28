@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -10,10 +7,10 @@
     exec "$@"
   '';
 in {
-	services.ollama = {
-		enable = true;
-		acceleration = "cuda";
-	};
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 
   time.timeZone = "Europe/Berlin";
 

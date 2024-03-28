@@ -1,10 +1,4 @@
-# Polybar
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   colors = {
     background = "#0f111a";
     foreground = "#ffffff";
