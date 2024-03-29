@@ -270,6 +270,10 @@ in {
           always = true;
         }
         {
+          command = "systemctl --user restart polybar.service";
+          always = true;
+        }
+        {
           command = "picom --config /home/loc/.config/picom.conf &";
           always = true;
           notification = false;
