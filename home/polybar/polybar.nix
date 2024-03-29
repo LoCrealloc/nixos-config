@@ -31,13 +31,9 @@ in {
 
 			out=$(polybar --list-monitors | cut -d":" -f1)
 
-			echo $out
-
 			for m in $out; do
 				count=$(($count+1))
 			done
-
-			echo $count
 
 			if [ $count == 3 ]; then
 				polybar --reload left &
