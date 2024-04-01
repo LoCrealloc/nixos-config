@@ -1,10 +1,9 @@
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }: {
   services.xserver = {
-    videoDrivers = ["nvidia"];
+    videoDrivers = [ "nvidia" ];
 
     enable = true;
 
@@ -61,7 +60,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["Hack"];})
+    (nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
   programs.light.enable = true;
@@ -73,7 +72,7 @@
   };
 
   specialisation.gaming.configuration = {
-    system.nixos.tags = ["gaming"];
+    system.nixos.tags = [ "gaming" ];
 
     services.xserver.xkb = {
       layout = lib.mkForce "de";

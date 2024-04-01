@@ -5,7 +5,7 @@
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = false;
-      AllowUsers = ["copy"];
+      AllowUsers = [ "copy" ];
     };
   };
 }

@@ -1,4 +1,4 @@
-{colors}: {
+{ colors }: {
   type = "internal/alsa";
 
   master-soundcard = "default";

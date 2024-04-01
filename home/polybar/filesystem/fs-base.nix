@@ -1,4 +1,4 @@
-{colors}: {
+{ colors }: {
   type = "internal/fs";
   interval = "25";
 

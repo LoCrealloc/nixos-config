@@ -1,4 +1,4 @@
-{colors}: {
+{ colors }: {
   type = "internal/cpu";
 
   interval = "0.5";

@@ -1,4 +1,4 @@
-{colors}: {
+{ colors }: {
   type = "internal/battery";
 
   full-at = "95";
@@ -41,10 +41,10 @@
     };
   };
 
-  animation-charging = ["󰂆" "󰂈" "󰂉" "󰂊" "󰂅"];
+  animation-charging = [ "󰂆" "󰂈" "󰂉" "󰂊" "󰂅" ];
   animation-charging-framerate = 750;
 
-  animation-discharging = ["󰁹" "󰂁" "󰁿" "󰁽" "󰁻"];
+  animation-discharging = [ "󰁹" "󰂁" "󰁿" "󰁽" "󰁻" ];
   animation-discharging-framerate = 750;
 
   label = {

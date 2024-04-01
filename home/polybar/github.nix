@@ -1,4 +1,4 @@
-{colors}: {
+{ colors }: {
   type = "custom/script";
   interval = "60";
 

@@ -1,11 +1,11 @@
 {
   services.borgbackup.jobs.loc-home = {
-    paths = ["/home/loc"];
+    paths = [ "/home/loc" ];
     encryption = {
       mode = "repokey";
       passCommand = "cat /home/loc/.config/borg/phrase";
     };
-    exclude = [".cache" "*/node_modules" "*/venv" "*/.venv"];
+    exclude = [ ".cache" "*/node_modules" "*/venv" "*/.venv" ];
     compression = "zlib";
     removableDevice = true;
     group = "borg";

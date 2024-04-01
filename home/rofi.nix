@@ -1,9 +1,8 @@
-{
-  config,
-  ...
-}: let
+{ config, ... }:
+let
   inherit (config.lib.formats.rasi) mkLiteral;
-in {
+in
+{
   programs.rofi = {
     enable = true;
     font = "Hack Nerd Font Mono 18";

@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -6,7 +7,8 @@
     export __VK_LAYER_NV_optimus=NVIDIA_only
     exec "$@"
   '';
-in {
+in
+{
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "de_DE.UTF-8";
@@ -33,7 +35,7 @@ in {
   services.gvfs.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = [
     nvidia-offload
@@ -44,7 +46,7 @@ in {
     pkgs.vim
     pkgs.i3-gaps
     pkgs.glxinfo
-    (pkgs.nerdfonts.override {fonts = ["Hack"];})
+    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
     pkgs.pulseaudio
     pkgs.os-prober
     pkgs.borgbackup

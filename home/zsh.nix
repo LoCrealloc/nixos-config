@@ -6,7 +6,7 @@
       enable = true;
       # theme = "bureau";
       theme = "juanghurtado";
-      plugins = ["git" "ssh-agent" "sudo" "dotenv"];
+      plugins = [ "git" "ssh-agent" "sudo" "dotenv" ];
       extraConfig = ''
         zstyle :omz:plugins:ssh-agent identities id_ed25519
       '';

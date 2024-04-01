@@ -1,8 +1,8 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
+{ lib
+, pkgs
+, ...
+}:
+let
   mod = "Mod1";
 
   ws1 = "1";
@@ -15,14 +15,15 @@
   ws8 = "8";
   ws9 = "9";
   ws10 = "10";
-in {
+in
+{
   xsession.windowManager.i3 = {
     enable = true;
     config = {
       modifier = mod;
 
       fonts = {
-        names = ["Hack Nerd Font"];
+        names = [ "Hack Nerd Font" ];
         style = "Regular";
         size = 11.0;
       };
@@ -169,13 +170,13 @@ in {
       };
 
       assigns = {
-        "${ws1}" = [{class = "startanimation";}];
-        "${ws2}" = [{class = "Signal";} {class = "element";}];
-        "${ws3}" = [{class = "spotify";}];
+        "${ws1}" = [{ class = "startanimation"; }];
+        "${ws2}" = [{ class = "Signal"; } { class = "element"; }];
+        "${ws3}" = [{ class = "spotify"; }];
         "${ws10}" = [
-          {class = "thunderbird";}
-          {class = "discord";}
-          {class = "mattermost";}
+          { class = "thunderbird"; }
+          { class = "discord"; }
+          { class = "mattermost"; }
         ];
       };
 
@@ -310,7 +311,7 @@ in {
         }
       ];
 
-      bars = [];
+      bars = [ ];
     };
   };
 }

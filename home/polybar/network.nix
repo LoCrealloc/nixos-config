@@ -1,4 +1,4 @@
-{colors}: {
+{ colors }: {
   type = "internal/network";
   interval = "3";
 

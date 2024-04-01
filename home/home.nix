@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./zsh.nix
     ./git.nix
@@ -6,8 +6,9 @@
     ./polybar/polybar.nix
     ./rofi.nix
     ./gtk.nix
-    ./neovim.nix
+    ./neovim
     ./dunst.nix
+    ./picom.nix
   ];
 
   home.username = "loc";
@@ -61,6 +62,7 @@
     #nextcloud-client
     rofi
     age
+    sops
 
     # development
     python310
@@ -109,6 +111,7 @@
     virt-manager
     terminator
     pdf2svg
+    newsflash
 
     # documents
     libreoffice
@@ -127,8 +130,8 @@
     powertop
     calc
     neofetch
-		coreutils
-		gnugrep
+    coreutils
+    gnugrep
 
     # GTK
     gtk-engine-murrine

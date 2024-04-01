@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{ lib, ... }: {
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
 
@@ -15,7 +12,7 @@
 
   specialisation = {
     external-display.configuration = {
-      system.nixos.tags = ["external-display"];
+      system.nixos.tags = [ "external-display" ];
       hardware.nvidia.prime.offload.enable = lib.mkForce false;
       hardware.nvidia.powerManagement.enable = lib.mkForce false;
 
