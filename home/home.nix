@@ -61,8 +61,11 @@
     networkmanagerapplet
     #nextcloud-client
     rofi
+    networkmanager_dmenu
     age
     sops
+    nitrogen
+    jq
 
     # development
     python310

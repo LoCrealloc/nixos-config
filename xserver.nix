@@ -35,7 +35,6 @@
       package = pkgs.i3-gaps;
       enable = true;
       extraPackages = with pkgs; [
-        dmenu
         networkmanager_dmenu
         i3lock-color
         polybar

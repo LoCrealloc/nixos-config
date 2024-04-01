@@ -84,4 +84,10 @@ in
       };
     };
   };
+
+  home.file."${config.xdg.configHome}/networkmanager-dmenu/config.ini".text = ''
+    		[dmenu]
+    		dmenu_command = rofi
+    		wifi_chars = ▂▄▆█
+    	'';
 }
