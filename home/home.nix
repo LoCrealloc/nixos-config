@@ -94,6 +94,7 @@
     #inkscape
     audacity
     #kdenlive
+    tone
 
     # 3d printing / electronics
     cura
