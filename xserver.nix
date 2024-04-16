@@ -18,29 +18,11 @@
       xterm.enable = false;
     };
 
-    displayManager = {
-      defaultSession = "none+i3";
-      sddm = {
-        enable = true;
-        autoNumlock = true;
-        autoLogin.relogin = true;
-      };
-      autoLogin = {
-        enable = true;
-        user = "loc";
-      };
-    };
-
     windowManager.i3 = {
       package = pkgs.i3-gaps;
       enable = true;
       extraPackages = with pkgs; [
-        networkmanager_dmenu
         i3lock-color
-        polybar
-        nitrogen
-        jq
-        dunst
       ];
     };
 
