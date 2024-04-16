@@ -189,7 +189,15 @@ in
               ]
           );
       }
-      markdown-preview-nvim
+      {
+        plugin = markdown-preview-nvim;
+        config = ''
+                autocmd Filetype md setlocal tabstop=2
+                autocmd Filetype md setlocal autoindent
+                autocmd Filetype md setlocal noexpandtab
+                autocmd Filetype md setlocal shiftwidth=2
+          				'';
+      }
       {
         plugin = conform-nvim;
         type = "lua";
