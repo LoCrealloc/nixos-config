@@ -43,8 +43,8 @@ in
         "XF86AudioPrev" = "exec playerctl previous";
 
         # backlight
-        "XF86MonBrightnessUp" = "exec light -As 'sysfs/backlight/amdgpu_bl1' 5";
-        "XF86MonBrightnessDown" = "exec light -Us 'sysfs/backlight/amdgpu_bl1' 5";
+        "XF86MonBrightnessUp" = "exec light -A 5";
+        "XF86MonBrightnessDown" = "exec light -U 5";
 
         # kill window
         "${mod}+Shift+q" = "kill";
