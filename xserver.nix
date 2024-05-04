@@ -61,9 +61,15 @@
       options = lib.mkForce "";
     };
 
-    hardware.nvidia.prime.offload.enable = lib.mkForce false;
-    hardware.nvidia.powerManagement.enable = lib.mkForce false;
-
-    hardware.nvidia.prime.sync.enable = lib.mkForce true;
+    hardware.nvidia = {
+      prime = {
+        offload.enable = lib.mkForce false;
+        sync.enable = lib.mkForce true;
+      };
+      powerManagement = {
+        enable = lib.mkForce false;
+        finegrained = lib.mkForce false;
+      };
+    };
   };
 }
