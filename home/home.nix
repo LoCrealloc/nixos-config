@@ -38,6 +38,7 @@
     element-desktop
     thunderbird
     weechat
+    fluffychat
 
     # browser
     firefox
