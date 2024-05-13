@@ -20,17 +20,8 @@
       "0:_NET_WM_STATE@[4]:32a *= '_NET_WM_STATE_HIDDEN'"
     ];
 
-    fade = true;
-    fadeSteps = [ 0.01 0.01 ];
-    fadeDelta = 5;
-
     settings = {
       corner-radius = 2;
-      fade-exclude = [
-        "class_g = 'Rofi'"
-        "class_g = 'Dunst'"
-        "window_type = 'menu'"
-      ];
     };
   };
 }
