@@ -18,10 +18,12 @@ in
   # lsp language servers
   home.packages = with pkgs; [
     nil
-    python3.pkgs.jedi-language-server
+    nodePackages.pyright
+
     ripgrep # telescope
     marksman
     ccls
+    jdt-language-server
 
     prettierd
     isort
@@ -37,49 +39,49 @@ in
     vimdiffAlias = true;
 
     extraConfig = ''
-      noremap ö l
-      noremap l k
-      noremap k j
-      noremap j h
+      									au VimLeave * set guicursor=a:ver100
+            						set guicursor=
+                  			set number
 
-      set autoindent
-      set noexpandtab
-      set tabstop=4
-      set shiftwidth=4
+                        noremap ö l
+                        noremap l k
+                        noremap k j
+                        noremap j h
 
-      inoremap <F1> <ESC>
-      nnoremap <F1> <ESC>
-      vnoremap <F1> <ESC>
+                        set autoindent
+                        set noexpandtab
+                        set tabstop=4
+                        set shiftwidth=4
+
+                        inoremap <F1> <ESC>
+                        nnoremap <F1> <ESC>
+                        vnoremap <F1> <ESC>
 
 
-      au BufRead,BufNewFile *.nix set filetype=nix
+                        au BufRead,BufNewFile *.nix set filetype=nix
 
-      autocmd Filetype nix setlocal tabstop=2
-      autocmd Filetype nix setlocal autoindent
-      autocmd Filetype nix setlocal noexpandtab
-      autocmd Filetype nix setlocal shiftwidth=2
+                        autocmd Filetype nix setlocal tabstop=2
+                        autocmd Filetype nix setlocal autoindent
+                        autocmd Filetype nix setlocal noexpandtab
+                        autocmd Filetype nix setlocal shiftwidth=2
 
-      nnoremap <F3> :tabp<CR>
-      nnoremap <F4> :tabn<CR>
+                        nnoremap <F3> :tabp<CR>
+                        nnoremap <F4> :tabn<CR>
 
-      nn <esc> :noh<cr>
+                        nn <esc> :noh<cr>
     '';
 
     plugins = with pkgs.vimPlugins; [
-      vim-airline
       {
-        plugin = vim-airline-themes;
+        plugin = lualine-nvim;
+        type = "lua";
         config = ''
-          set guicursor=
-          if (has("termguicolors"))
-          	set termguicolors
-          endif
-          syntax enable
-          let g:material_theme_style = 'ocean-community'
-          let g:material_terminal_italics = 1
-          colorscheme material
-          let g:airline_theme = 'material'
-        '';
+          require('lualine').setup {
+            options = {
+              theme = 'auto'
+            }
+          }
+          				'';
       }
       {
         plugin = nerdtree;
@@ -91,7 +93,11 @@ in
         '';
       }
       vim-nerdtree-syntax-highlight
-      material-vim
+      {
+        plugin = material-nvim;
+        type = "lua";
+        config = builtins.readFile ./material.lua;
+      }
       popup-nvim
       plenary-nvim
       telescope-project-nvim
@@ -148,6 +154,7 @@ in
       cmp-vimtex
       friendly-snippets
       vim-ccls
+      nvim-jdtls
       {
         plugin = nvim-cmp;
         type = "lua";
@@ -157,10 +164,13 @@ in
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-          require'lspconfig'.nil_ls.setup{}
-          require'lspconfig'.jedi_language_server.setup{}
-          require'lspconfig'.ccls.setup{}
-          require'lspconfig'.marksman.setup{}
+                    require'lspconfig'.nil_ls.setup{}
+
+                    require'lspconfig'.pyright.setup{}
+
+                    require'lspconfig'.ccls.setup{}
+                    require'lspconfig'.marksman.setup{}
+          					require'lspconfig'.jdtls.setup{}
         '';
       }
       {
@@ -188,15 +198,28 @@ in
                 typescript
               ]
           );
+        type = "lua";
+        config = ''
+          				require'nvim-treesitter.configs'.setup {
+            highlight = {
+              enable = true,
+
+              additional_vim_regex_highlighting = false,
+            },
+          }	
+
+          				'';
       }
       {
         plugin = markdown-preview-nvim;
         config = ''
-                autocmd Filetype md setlocal tabstop=2
-                autocmd Filetype md setlocal autoindent
-                autocmd Filetype md setlocal noexpandtab
-                autocmd Filetype md setlocal shiftwidth=2
-          				'';
+                          autocmd Filetype markdown setlocal tabstop=2
+                          autocmd Filetype markdown setlocal autoindent
+                          autocmd Filetype markdown setlocal noexpandtab
+                          autocmd Filetype markdown setlocal shiftwidth=2
+
+          								nmap <C-m> <Plug>MarkdownPreviewToggle
+                    				'';
       }
       {
         plugin = conform-nvim;
