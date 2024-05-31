@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   imports = [
     ./zsh.nix
     ./git.nix
@@ -17,6 +17,8 @@
   xdg.dataHome = "/home/loc/.local/share";
   xdg.configHome = "/home/loc/.config";
 
+  home.file.".icons/default".source = "${config.gtk.cursorTheme.package}/share/icons/${config.gtk.cursorTheme.name}";
+
   home.stateVersion = "22.05";
 
   # GnuPG
@@ -28,7 +30,7 @@
     enable = true;
     defaultCacheTtl = 34560000;
     maxCacheTtl = 34560000;
-    pinentryPackage = pkgs.pinentryi-curses;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   home.packages = with pkgs; [
@@ -39,6 +41,7 @@
     thunderbird
     weechat
     fluffychat
+    iamb
 
     # browser
     firefox
@@ -77,6 +80,7 @@
     ccls
     clang
     valgrind
+    jdk21
 
     # IDEs & editors
     jetbrains.pycharm-community
@@ -114,7 +118,6 @@
     sl
     cmatrix
     virt-manager
-    terminator
     pdf2svg
     newsflash
 

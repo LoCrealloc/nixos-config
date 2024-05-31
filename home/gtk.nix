@@ -7,9 +7,13 @@
       name = "Flat-Remix-Violet-Dark";
     };
     theme.name = "Material-DeepOcean-BL";
+    cursorTheme = {
+      package = pkgs.simp1e-cursors;
+      name = "Simp1e-Dark";
+    };
 
     font = {
-      name = "DejaVu Sans";
+      name = "Hack Nerd Font";
       size = 12;
     };
   };
