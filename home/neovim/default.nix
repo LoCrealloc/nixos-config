@@ -213,13 +213,14 @@ in
       {
         plugin = markdown-preview-nvim;
         config = ''
-                          autocmd Filetype markdown setlocal tabstop=2
-                          autocmd Filetype markdown setlocal autoindent
-                          autocmd Filetype markdown setlocal noexpandtab
-                          autocmd Filetype markdown setlocal shiftwidth=2
+                                    autocmd Filetype markdown setlocal tabstop=2
+                                    autocmd Filetype markdown setlocal autoindent
+                                    autocmd Filetype markdown setlocal noexpandtab
+                                    autocmd Filetype markdown setlocal shiftwidth=2
+          													let g:mkdp_browser = '${pkgs.librewolf}/bin/librewolf'
 
-          								nmap <C-m> <Plug>MarkdownPreviewToggle
-                    				'';
+                    								nmap <C-m> <Plug>MarkdownPreviewToggle
+                              				'';
       }
       {
         plugin = conform-nvim;
