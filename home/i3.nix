@@ -170,7 +170,6 @@ in
       };
 
       assigns = {
-        "${ws1}" = [{ class = "startanimation"; }];
         "${ws2}" = [{ class = "Signal"; } { class = "element"; }];
         "${ws3}" = [{ class = "spotify"; }];
         "${ws10}" = [
@@ -274,15 +273,6 @@ in
           command = "systemctl --user restart polybar.service";
           always = true;
         }
-        {
-          command = "picom --config /home/loc/.config/picom.conf &";
-          always = true;
-          notification = false;
-        }
-        #{
-        #  command = "/home/loc/.config/polybar/launch_polybar.sh";
-        #  always = true;
-        #}
         {
           # Restore workspace 10 layout from saved file
           command = "i3-msg 'workspace 10; append_layout /home/loc/.config/i3/workspaces/10.json'";
