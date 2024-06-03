@@ -54,7 +54,7 @@
           ./pipewire.nix
           ./sddm.nix
           ./sops.nix
-          ./ssh.nix
+          #./ssh.nix
           ./steam.nix
           ./users.nix
           ./virtualisation.nix
