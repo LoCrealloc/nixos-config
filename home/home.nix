@@ -79,6 +79,7 @@
     sqlite
     ccls
     clang
+    gnumake
     valgrind
     jdk21
 
