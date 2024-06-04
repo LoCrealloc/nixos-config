@@ -71,7 +71,7 @@ in
         "${mod}+Shift+l" = "move right";
 
         # split horizontal
-        "${mod}+h" = "split h";
+        "${mod}+b" = "split h";
 
         # split vertical
         "${mod}+v" = "split v";
