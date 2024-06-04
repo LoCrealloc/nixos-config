@@ -43,11 +43,6 @@ in
             						set guicursor=
                   			set number
 
-                        noremap ö l
-                        noremap l k
-                        noremap k j
-                        noremap j h
-
                         set autoindent
                         set noexpandtab
                         set tabstop=4

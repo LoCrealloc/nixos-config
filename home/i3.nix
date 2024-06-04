@@ -54,10 +54,10 @@ in
         "${mod}+Shift+Return" = "exec alacritty &";
 
         # change focus
-        "${mod}+j" = "focus left";
-        "${mod}+k" = "focus down";
-        "${mod}+l" = "focus up";
-        "${mod}+odiaeresis" = "focus right";
+        "${mod}+h" = "focus left";
+        "${mod}+j" = "focus down";
+        "${mod}+k" = "focus up";
+        "${mod}+l" = "focus right";
 
         "${mod}+Left" = "focus left";
         "${mod}+Down" = "focus down";
@@ -65,10 +65,10 @@ in
         "${mod}+Right" = "focus right";
 
         # move window
-        "${mod}+Shift+j" = "move left";
-        "${mod}+Shift+k" = "move down";
-        "${mod}+Shift+l" = "move up";
-        "${mod}+Shift+odiaeresis" = "move right";
+        "${mod}+Shift+h" = "move left";
+        "${mod}+Shift+j" = "move down";
+        "${mod}+Shift+k" = "move up";
+        "${mod}+Shift+l" = "move right";
 
         # split horizontal
         "${mod}+h" = "split h";
@@ -135,10 +135,10 @@ in
 
       modes = {
         resize = {
-          "j" = "resize shrink width 10 px or 10 ppt";
-          "k" = "resize grow height 10 px or 10 ppt";
-          "l" = "resize shrink height 10 px or 10 ppt";
-          "odiaeresis" = "resize grow width 10 px or 10 ppt";
+          "h" = "resize shrink width 10 px or 10 ppt";
+          "j" = "resize grow height 10 px or 10 ppt";
+          "k" = "resize shrink height 10 px or 10 ppt";
+          "l" = "resize grow width 10 px or 10 ppt";
 
           Left = "resize shrink width 10 px or 10 ppt";
           Down = "resize grow height 10 px or 10 ppt";
