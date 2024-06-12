@@ -1,5 +1,6 @@
 { pkgs
 , lib
+, scripts
 , ...
 }: {
   services.xserver = {
@@ -59,5 +60,9 @@
         finegrained = lib.mkForce false;
       };
     };
+  };
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = scripts.i3lock;
   };
 }

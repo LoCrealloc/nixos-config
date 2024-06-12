@@ -23,16 +23,26 @@
     , home-manager
     , sops-nix
     , ...
-    } @ inputs: {
+    } @ inputs:
+    let
+      system = "x86_64-linux";
+      scripts = import ./scripts.nix ({ pkgs = import nixpkgs { inherit system; }; });
+    in
+    {
       formatter."x86_64-linux" = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
       nixosConfigurations.locs-thinkbook = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = inputs;
+        system = system;
+        specialArgs = inputs // {
+          scripts = scripts;
+        };
 
         modules = [
           home-manager.nixosModules.home-manager
           {
+            home-manager.extraSpecialArgs = {
+              scripts = scripts;
+            };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.sharedModules = [

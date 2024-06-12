@@ -1,8 +1,12 @@
 { lib
 , pkgs
+, scripts
 , ...
 }:
 let
+
+  i3lock = pkgs.writeScript "i3lock_execute" scripts.i3lock;
+
   mod = "Mod1";
 
   ws1 = "1";
@@ -159,8 +163,8 @@ in
         };
 
         system = {
-          "l" = "exec /home/loc/.config/i3/scripts/i3lock_execute.sh, mode default";
-          "s" = "exec /home/loc/.config/i3/scripts/i3lock_execute.sh, exec systemctl suspend, mode default";
+          "l" = "exec ${i3lock}, mode default";
+          "s" = "exec ${i3lock}, exec systemctl suspend, mode default";
           "r" = "exec systemctl reboot, mode default";
           "h" = "exec systemctl hibernate, mode default";
           "p" = "exec systemctl poweroff, mode default";
@@ -288,15 +292,7 @@ in
           always = false;
         }
         {
-          command = "discord &";
-          always = false;
-        }
-        {
           command = "i3-msg 'workspace 2; exec element-desktop &'";
-          always = false;
-        }
-        {
-          command = "i3-msg 'workspace 2; exec signal-desktop &'";
           always = false;
         }
       ];
