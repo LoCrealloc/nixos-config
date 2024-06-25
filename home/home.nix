@@ -70,6 +70,7 @@
     sops
     nitrogen
     jq
+    udisks
 
     # development
     python310
@@ -126,7 +127,6 @@
     libreoffice
     texlive.combined.scheme-full
     mupdf
-    onlyoffice-bin
 
     # fonts
     google-fonts
@@ -144,7 +144,6 @@
 
     # GTK
     gtk-engine-murrine
-    lxappearance
 
     # games
     openttd
