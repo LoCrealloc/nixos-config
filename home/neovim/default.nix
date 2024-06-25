@@ -1,24 +1,10 @@
 { pkgs, ... }:
-let
-  cmp-vimtex = (
-    pkgs.vimUtils.buildVimPlugin {
-      pname = "cmp-vimtex";
-      version = "2024-02-26";
-      src = pkgs.fetchFromGitHub {
-        owner = "micangl";
-        repo = "cmp-vimtex";
-        rev = "613fbfc54d9488252b0b0289d6d1d60242513558";
-        sha256 = "sha256-07FqXsRe0RP5f3b6osrsi5gai+bZi9ybm5JL/nnBH+4=";
-      };
-      meta.homepage = "https://github.com/micangl/cmp-vimtex";
-    }
-  );
-in
+
 {
   # lsp language servers
   home.packages = with pkgs; [
     nil
-    nodePackages.pyright
+    pyright
 
     ripgrep # telescope
     marksman
@@ -113,59 +99,50 @@ in
       {
         plugin = vimtex;
         config = ''
-          let g:vimtex_compiler_latexmk = {
-          \ 'options' : [
-          \   '-pdf',
-          \   '-shell-escape',
-          \   '-verbose',
-          \   '-file-line-error',
-          \   '-synctex=1',
-          \   '-interaction=nonstopmode',
-          \ ],
-          \}
+          					let g:vimtex_view_method = 'mupdf'
 
-          nnoremap tc :VimtexCompile<CR>
+                    let g:vimtex_compiler_latexmk = {
+                    \ 'options' : [
+                    \   '-pdf',
+                    \   '-shell-escape',
+                    \   '-verbose',
+                    \   '-file-line-error',
+                    \   '-synctex=1',
+                    \   '-interaction=nonstopmode',
+                    \ ],
+                    \}
+
+                    nnoremap tc :VimtexCompile<CR>
         '';
       }
-      {
-        plugin = lsp-zero-nvim;
-        type = "lua";
-        config = ''
-          local lsp_zero = require('lsp-zero')
-          lsp_zero.extend_lspconfig()
-
-          lsp_zero.on_attach(function(client, bufnr)
-          	lsp_zero.default_keymaps({buffer = bufnr})
-          end)
-        '';
-      }
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      vim-vsnip
-      cmp-vsnip
-      cmp-zsh
-      cmp-vimtex
-      friendly-snippets
       vim-ccls
       nvim-jdtls
+      coq-artifacts
       {
-        plugin = nvim-cmp;
+        plugin = coq_nvim;
         type = "lua";
-        config = builtins.readFile ./nvim-cmp.lua;
+        config = builtins.readFile ./coq_nvim.lua;
+      }
+      {
+        plugin = coq-thirdparty;
+        type = "lua";
+        config = ''
+          					require("coq_3p") {
+            					{ src = "nvimlua", short_name = "nLUA", conf_only = false },
+            					{ src = "vimtex",  short_name = "vTEX" },
+          					}
+          				'';
       }
       {
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-                    require'lspconfig'.nil_ls.setup{}
-
-                    require'lspconfig'.pyright.setup{}
-
-                    require'lspconfig'.ccls.setup{}
-                    require'lspconfig'.marksman.setup{}
-          					require'lspconfig'.jdtls.setup{}
+          				local lsp = require "lspconfig"
+          				lsp.nil_ls.setup(coq.lsp_ensure_capabilities())
+          				lsp.pyright.setup(coq.lsp_ensure_capabilities())
+          				lsp.ccls.setup(coq.lsp_ensure_capabilities())
+          				lsp.marksman.setup(coq.lsp_ensure_capabilities())
+          				lsp.jdtls.setup(coq.lsp_ensure_capabilities())
         '';
       }
       {
@@ -195,13 +172,13 @@ in
           );
         type = "lua";
         config = ''
-          				require'nvim-treesitter.configs'.setup {
-            highlight = {
-              enable = true,
+                    				require'nvim-treesitter.configs'.setup {
+                      highlight = {
+                        enable = true,
 
-              additional_vim_regex_highlighting = false,
-            },
-          }	
+                        additional_vim_regex_highlighting = false,
+                      },
+                    }	
 
           				'';
       }
