@@ -1,5 +1,5 @@
 { pkgs }: {
-  i3lock = ''
+  i3lock = pkgs.writeScript "i3lock_execute" ''
     ${pkgs.i3lock-color}/bin/i3lock-color \
     --indicator \
     --radius 120 \

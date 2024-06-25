@@ -5,7 +5,7 @@
 }:
 let
 
-  i3lock = pkgs.writeScript "i3lock_execute" scripts.i3lock;
+  i3lock = scripts.i3lock;
 
   mod = "Mod1";
 
