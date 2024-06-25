@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   users.groups = {
     borg = {
       name = "borg";
@@ -13,9 +13,7 @@
     home = "/home/loc";
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" "docker" "video" "camera" "borg" "keyboard" "libvirtd" "dialout" "plugdev" ];
-    packages = [
-      pkgs.udisks
-    ];
+    hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
   };
 
   users.users.copy = {
@@ -28,4 +26,7 @@
   home-manager.users = {
     loc = import ./home/home.nix;
   };
+
+  sops.secrets."user/hashedPassword".neededForUsers = true;
+
 }

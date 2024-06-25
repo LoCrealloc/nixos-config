@@ -1,0 +1,6 @@
+keys:
+  - &loc age1w3e6t34j7md03gvndfv4mryvy33h8ly0l64mc3a9hk0t7jrgq52qpk7cae
+creation_rules:
+  - path_regex: secrets/.+$
+    key_groups:
+      - age: [ *loc ]
