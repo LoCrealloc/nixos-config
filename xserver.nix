@@ -27,18 +27,11 @@
       ];
     };
 
-  };
+    xautolock = {
+      enable = true;
+      locker = "${scripts.i3lock}";
+    };
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
-  ];
-
-  programs.light.enable = true;
-
-  services.udev = {
-    extraRules = ''
-      ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl1", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-    '';
   };
 
   specialisation.gaming.configuration = {
@@ -60,9 +53,5 @@
         finegrained = lib.mkForce false;
       };
     };
-  };
-  programs.xss-lock = {
-    enable = true;
-    lockerCommand = scripts.i3lock;
   };
 }
