@@ -12,10 +12,6 @@
   boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
 
-  boot.extraModprobeConfig = ''
-    options v4l2loopback exclusive_caps=1 card_label="a6300"
-  '';
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/2c483608-3c3a-41af-96b4-cb12162814e0";
     fsType = "ext4";
@@ -34,6 +30,12 @@
   swapDevices = [
     { device = "/dev/disk/by-uuid/b1c4bfe3-85a7-4c00-b590-55008ecbb197"; }
   ];
+
+  fileSystems."/home/loc/backup" = {
+    device = "/dev/disk/by-uuid/8d33822d-00fb-452d-829c-11555eb43193";
+    fsType = "ext4";
+    options = [ "nofail" "x-systemd.device-timeout=5" ];
+  };
 
   networking.useDHCP = lib.mkDefault true;
 
