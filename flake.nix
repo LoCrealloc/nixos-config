@@ -6,6 +6,10 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
+    nixpkgs-stable = {
+      url = "github:NixOS/nixpkgs/release-24.05";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,12 +22,14 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , sops-nix
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      sops-nix,
+      nixpkgs-stable,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       scripts = import ./scripts.nix ({ pkgs = import nixpkgs { inherit system; }; });
@@ -42,12 +48,11 @@
           {
             home-manager.extraSpecialArgs = {
               scripts = scripts;
+              pkgs-stable = import nixpkgs-stable { inherit system; };
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.sharedModules = [
-              sops-nix.homeManagerModules.sops
-            ];
+            home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
           }
           sops-nix.nixosModules.sops
 
