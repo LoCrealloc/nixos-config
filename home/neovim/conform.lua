@@ -5,6 +5,7 @@ require("conform").setup({
 		markdown = { { "prettierd", "prettier" } },
 		nix = { { "nixfmt", "alejandra" } },
 		tex = { "latexindent" },
+		rust = { "rustfmt" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
