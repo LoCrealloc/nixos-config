@@ -1,4 +1,10 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  pkgs-stable,
+  ...
+}:
+{
   imports = [
     ./zsh.nix
     ./git.nix
@@ -28,20 +34,20 @@
 
   services.gpg-agent = {
     enable = true;
-    defaultCacheTtl = 34560000;
+    defaultCacheTtl = 34560001;
     maxCacheTtl = 34560000;
     pinentryPackage = pkgs.pinentry-curses;
   };
 
   home.packages = with pkgs; [
+    pkgs-stable.cura
+    pkgs-stable.iamb
+
     # communication
     discord
     signal-desktop
-    element-desktop
     thunderbird
     weechat
-    fluffychat
-    iamb
 
     # browser
     firefox
@@ -50,7 +56,6 @@
     chromium
 
     # media
-    spotify
     playerctl
     pavucontrol
     cava
@@ -82,6 +87,7 @@
     clang
     gnumake
     valgrind
+    gdb
     jdk21
 
     # IDEs & editors
@@ -104,14 +110,14 @@
     tone
 
     # 3d printing / electronics
-    cura
+    #cura
     freecad
     openscad
     #kicad
 
     # miscellaneous
     monero-gui
-    gnome.nautilus
+    nautilus
     xclip
     scrot
     zip
