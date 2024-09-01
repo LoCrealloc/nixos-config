@@ -106,20 +106,20 @@
       {
         plugin = vimtex;
         config = ''
-          					let g:vimtex_view_method = 'mupdf'
+          let g:vimtex_view_method = 'mupdf'
 
-                    let g:vimtex_compiler_latexmk = {
-                    \ 'options' : [
-                    \   '-pdf',
-                    \   '-shell-escape',
-                    \   '-verbose',
-                    \   '-file-line-error',
-                    \   '-synctex=1',
-                    \   '-interaction=nonstopmode',
-                    \ ],
-                    \}
+          let g:vimtex_compiler_latexmk = {
+          \ 'options' : [
+          \   '-pdf',
+          \   '-shell-escape',
+          \   '-verbose',
+          \   '-file-line-error',
+          \   '-synctex=1',
+          \   '-interaction=nonstopmode',
+          \ ],
+          \}
 
-                    nnoremap tc :VimtexCompile<CR>
+          nnoremap tc :VimtexCompile<CR>
         '';
       }
       {
@@ -141,11 +141,11 @@
         plugin = coq-thirdparty;
         type = "lua";
         config = ''
-          					require("coq_3p") {
-            					{ src = "nvimlua", short_name = "nLUA", conf_only = false },
-            					{ src = "vimtex",  short_name = "vTEX" },
-          					}
-          				'';
+          require("coq_3p") {
+          	{ src = "nvimlua", short_name = "nLUA", conf_only = false },
+          	{ src = "vimtex",  short_name = "vTEX" },
+          }
+        '';
       }
       {
         plugin = nvim-lspconfig;
