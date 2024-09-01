@@ -1,11 +1,18 @@
+{ config, pkgs, ... }:
 {
   services.borgbackup.jobs.loc-home = {
     paths = [ "/home/loc" ];
     encryption = {
       mode = "repokey";
-      passCommand = "cat /home/loc/.config/borg/phrase";
+      passCommand = "cat ${config.sops.secrets."user/borgPhrase".path}";
     };
-    exclude = [ ".cache" "*/node_modules" "*/venv" "*/.venv" ];
+    exclude = [
+      ".cache"
+      "*/node_modules"
+      "*/venv"
+      "*/.venv"
+      "Games"
+    ];
     compression = "zlib";
     removableDevice = true;
     group = "borg";
@@ -14,11 +21,17 @@
       export DISPLAY=:0
       export XAUTHORITY=/home/loc/.Xauthority
       export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-      /run/current-system/sw/bin/dunstify -a Borg  -i /home/loc/.config/borg/icons/borg.png Borg "Backup saved as $archiveName"
+      ${pkgs.dunst}/bin/dunstify -a Borg  -i /home/loc/.config/borg/icons/borg.png Borg "Backup saved as $archiveName"
     '';
     startAt = "hourly";
     persistentTimer = true;
-    repo = "/run/media/loc/backup/borg/";
+    repo = "/home/loc/backup/borg/";
     doInit = false;
+  };
+
+  sops.secrets."user/borgPhrase" = {
+    owner = "loc";
+    group = "borg";
+    mode = "0660";
   };
 }
