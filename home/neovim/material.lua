@@ -23,9 +23,9 @@ require('material').setup({
     plugins = { -- Uncomment the plugins that you use to highlight them
         -- "neotest",
         -- "neo-tree",
-        "nvim-cmp",
         "nvim-web-devicons",
         "telescope",
+		"neorg",
         -- "nvim-notify",
     },
 
