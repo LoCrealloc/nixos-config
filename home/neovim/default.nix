@@ -1,34 +1,22 @@
 { pkgs, ... }:
-let
-  cmp-vimtex = (
-    pkgs.vimUtils.buildVimPlugin {
-      pname = "cmp-vimtex";
-      version = "2024-02-26";
-      src = pkgs.fetchFromGitHub {
-        owner = "micangl";
-        repo = "cmp-vimtex";
-        rev = "613fbfc54d9488252b0b0289d6d1d60242513558";
-        sha256 = "sha256-07FqXsRe0RP5f3b6osrsi5gai+bZi9ybm5JL/nnBH+4=";
-      };
-      meta.homepage = "https://github.com/micangl/cmp-vimtex";
-    }
-  );
-in
+
 {
   # lsp language servers
   home.packages = with pkgs; [
-    nil
-    nodePackages.pyright
-
     ripgrep # telescope
+
+    nil
+    pyright
     marksman
     ccls
     jdt-language-server
+    rust-analyzer
 
     prettierd
     isort
     black
-    nixpkgs-fmt
+    nixfmt-rfc-style
+    rustfmt
   ];
 
   programs.neovim = {
@@ -38,32 +26,37 @@ in
     withRuby = true;
     vimdiffAlias = true;
 
+    extraLuaPackages = luaPkgs: [
+      luaPkgs.pathlib-nvim # For neorg
+      luaPkgs.lua-utils-nvim # For neorg
+    ];
+
     extraConfig = ''
-      									au VimLeave * set guicursor=a:ver100
-            						set guicursor=
-                  			set number
+      au VimLeave * set guicursor=a:ver100
+      set guicursor=
+      set number
 
-                        set autoindent
-                        set noexpandtab
-                        set tabstop=4
-                        set shiftwidth=4
+      set autoindent
+      set noexpandtab
+      set tabstop=4
+      set shiftwidth=4
 
-                        inoremap <F1> <ESC>
-                        nnoremap <F1> <ESC>
-                        vnoremap <F1> <ESC>
+      inoremap <F1> <ESC>
+      nnoremap <F1> <ESC>
+      vnoremap <F1> <ESC>
 
 
-                        au BufRead,BufNewFile *.nix set filetype=nix
+      au BufRead,BufNewFile *.nix set filetype=nix
 
-                        autocmd Filetype nix setlocal tabstop=2
-                        autocmd Filetype nix setlocal autoindent
-                        autocmd Filetype nix setlocal noexpandtab
-                        autocmd Filetype nix setlocal shiftwidth=2
+      autocmd Filetype nix setlocal tabstop=2
+      autocmd Filetype nix setlocal autoindent
+      autocmd Filetype nix setlocal noexpandtab
+      autocmd Filetype nix setlocal shiftwidth=2
 
-                        nnoremap <F3> :tabp<CR>
-                        nnoremap <F4> :tabn<CR>
+      nnoremap <F3> :tabp<CR>
+      nnoremap <F4> :tabn<CR>
 
-                        nn <esc> :noh<cr>
+      nn <esc> :noh<cr>
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -113,114 +106,118 @@ in
       {
         plugin = vimtex;
         config = ''
-          let g:vimtex_compiler_latexmk = {
-          \ 'options' : [
-          \   '-pdf',
-          \   '-shell-escape',
-          \   '-verbose',
-          \   '-file-line-error',
-          \   '-synctex=1',
-          \   '-interaction=nonstopmode',
-          \ ],
-          \}
+          					let g:vimtex_view_method = 'mupdf'
 
-          nnoremap tc :VimtexCompile<CR>
+                    let g:vimtex_compiler_latexmk = {
+                    \ 'options' : [
+                    \   '-pdf',
+                    \   '-shell-escape',
+                    \   '-verbose',
+                    \   '-file-line-error',
+                    \   '-synctex=1',
+                    \   '-interaction=nonstopmode',
+                    \ ],
+                    \}
+
+                    nnoremap tc :VimtexCompile<CR>
         '';
       }
       {
-        plugin = lsp-zero-nvim;
+        plugin = indent-blankline-nvim;
         type = "lua";
         config = ''
-          local lsp_zero = require('lsp-zero')
-          lsp_zero.extend_lspconfig()
-
-          lsp_zero.on_attach(function(client, bufnr)
-          	lsp_zero.default_keymaps({buffer = bufnr})
-          end)
+          require("ibl").setup()
         '';
       }
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      vim-vsnip
-      cmp-vsnip
-      cmp-zsh
-      cmp-vimtex
-      friendly-snippets
       vim-ccls
       nvim-jdtls
+      coq-artifacts
       {
-        plugin = nvim-cmp;
+        plugin = coq_nvim;
         type = "lua";
-        config = builtins.readFile ./nvim-cmp.lua;
+        config = builtins.readFile ./coq_nvim.lua;
+      }
+      {
+        plugin = coq-thirdparty;
+        type = "lua";
+        config = ''
+          					require("coq_3p") {
+            					{ src = "nvimlua", short_name = "nLUA", conf_only = false },
+            					{ src = "vimtex",  short_name = "vTEX" },
+          					}
+          				'';
       }
       {
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-                    require'lspconfig'.nil_ls.setup{}
-
-                    require'lspconfig'.pyright.setup{}
-
-                    require'lspconfig'.ccls.setup{}
-                    require'lspconfig'.marksman.setup{}
-          					require'lspconfig'.jdtls.setup{}
+          local lsp = require "lspconfig"
+          lsp.nil_ls.setup(coq.lsp_ensure_capabilities())
+          lsp.pyright.setup(coq.lsp_ensure_capabilities())
+          lsp.ccls.setup(coq.lsp_ensure_capabilities())
+          lsp.marksman.setup(coq.lsp_ensure_capabilities())
+          lsp.jdtls.setup(coq.lsp_ensure_capabilities())
+          lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
         '';
       }
       {
-        plugin = nvim-treesitter.withPlugins
-          (
-            plugins:
-              with plugins; [
-                nix
-                python
-                vim
-                markdown_inline
-                latex
-                c
-                rust
-                bash
-                dockerfile
-                svelte
-                gitignore
-                yaml
-                json
-                html
-                css
-                java
-                javascript
-                typescript
-              ]
-          );
+        plugin = nvim-treesitter.withPlugins (
+          plugins: with plugins; [
+            nix
+            python
+            vim
+            markdown_inline
+            latex
+            c
+            rust
+            bash
+            dockerfile
+            svelte
+            gitignore
+            yaml
+            json
+            html
+            css
+            java
+            javascript
+            typescript
+            norg
+          ]
+        );
         type = "lua";
         config = ''
-          				require'nvim-treesitter.configs'.setup {
-            highlight = {
-              enable = true,
+          require'nvim-treesitter.configs'.setup {
+          	highlight = {
+          		enable = true,
 
-              additional_vim_regex_highlighting = false,
-            },
+          		additional_vim_regex_highlighting = false,
+          	},
           }	
-
-          				'';
+        '';
       }
       {
         plugin = markdown-preview-nvim;
         config = ''
-                                    autocmd Filetype markdown setlocal tabstop=2
-                                    autocmd Filetype markdown setlocal autoindent
-                                    autocmd Filetype markdown setlocal noexpandtab
-                                    autocmd Filetype markdown setlocal shiftwidth=2
-          													let g:mkdp_browser = '${pkgs.librewolf}/bin/librewolf'
+          autocmd Filetype markdown setlocal tabstop=2
+          autocmd Filetype markdown setlocal autoindent
+          autocmd Filetype markdown setlocal noexpandtab
+          autocmd Filetype markdown setlocal shiftwidth=2
+          let g:mkdp_browser = '${pkgs.librewolf}/bin/librewolf'
 
-                    								nmap <C-m> <Plug>MarkdownPreviewToggle
-                              				'';
+          nmap <C-m> <Plug>MarkdownPreviewToggle
+        '';
       }
       {
         plugin = conform-nvim;
         type = "lua";
         config = builtins.readFile ./conform.lua;
+      }
+      nvim-nio
+      neorg-telescope
+      {
+        plugin = neorg;
+        type = "lua";
+        config = builtins.readFile ./neorg.lua;
       }
     ];
   };

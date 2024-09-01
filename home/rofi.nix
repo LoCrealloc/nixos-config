@@ -14,6 +14,7 @@ in
       display-ssh = "󰒋";
       display-filebrowser = "󰉋";
       display-window = "";
+      run-shell-command = "alacritty --command {cmd}";
     };
     theme = {
       "*" = {
