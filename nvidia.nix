@@ -1,7 +1,10 @@
-{ lib, ... }: {
-  hardware.opengl.enable = true;
+{ lib, ... }:
+{
+  hardware.graphics.enable = true;
 
   hardware.nvidia = {
+
+    open = true;
 
     modesetting.enable = true;
     powerManagement = {
