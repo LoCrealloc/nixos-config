@@ -3,18 +3,20 @@
 {
   # lsp language servers
   home.packages = with pkgs; [
+    ripgrep # telescope
+
     nil
     pyright
-
-    ripgrep # telescope
     marksman
     ccls
     jdt-language-server
+    rust-analyzer
 
     prettierd
     isort
     black
-    nixpkgs-fmt
+    nixfmt-rfc-style
+    rustfmt
   ];
 
   programs.neovim = {
@@ -24,32 +26,37 @@
     withRuby = true;
     vimdiffAlias = true;
 
+    extraLuaPackages = luaPkgs: [
+      luaPkgs.pathlib-nvim # For neorg
+      luaPkgs.lua-utils-nvim # For neorg
+    ];
+
     extraConfig = ''
-      									au VimLeave * set guicursor=a:ver100
-            						set guicursor=
-                  			set number
+      au VimLeave * set guicursor=a:ver100
+      set guicursor=
+      set number
 
-                        set autoindent
-                        set noexpandtab
-                        set tabstop=4
-                        set shiftwidth=4
+      set autoindent
+      set noexpandtab
+      set tabstop=4
+      set shiftwidth=4
 
-                        inoremap <F1> <ESC>
-                        nnoremap <F1> <ESC>
-                        vnoremap <F1> <ESC>
+      inoremap <F1> <ESC>
+      nnoremap <F1> <ESC>
+      vnoremap <F1> <ESC>
 
 
-                        au BufRead,BufNewFile *.nix set filetype=nix
+      au BufRead,BufNewFile *.nix set filetype=nix
 
-                        autocmd Filetype nix setlocal tabstop=2
-                        autocmd Filetype nix setlocal autoindent
-                        autocmd Filetype nix setlocal noexpandtab
-                        autocmd Filetype nix setlocal shiftwidth=2
+      autocmd Filetype nix setlocal tabstop=2
+      autocmd Filetype nix setlocal autoindent
+      autocmd Filetype nix setlocal noexpandtab
+      autocmd Filetype nix setlocal shiftwidth=2
 
-                        nnoremap <F3> :tabp<CR>
-                        nnoremap <F4> :tabn<CR>
+      nnoremap <F3> :tabp<CR>
+      nnoremap <F4> :tabn<CR>
 
-                        nn <esc> :noh<cr>
+      nn <esc> :noh<cr>
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -115,6 +122,13 @@
                     nnoremap tc :VimtexCompile<CR>
         '';
       }
+      {
+        plugin = indent-blankline-nvim;
+        type = "lua";
+        config = ''
+          require("ibl").setup()
+        '';
+      }
       vim-ccls
       nvim-jdtls
       coq-artifacts
@@ -137,67 +151,73 @@
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-          				local lsp = require "lspconfig"
-          				lsp.nil_ls.setup(coq.lsp_ensure_capabilities())
-          				lsp.pyright.setup(coq.lsp_ensure_capabilities())
-          				lsp.ccls.setup(coq.lsp_ensure_capabilities())
-          				lsp.marksman.setup(coq.lsp_ensure_capabilities())
-          				lsp.jdtls.setup(coq.lsp_ensure_capabilities())
+          local lsp = require "lspconfig"
+          lsp.nil_ls.setup(coq.lsp_ensure_capabilities())
+          lsp.pyright.setup(coq.lsp_ensure_capabilities())
+          lsp.ccls.setup(coq.lsp_ensure_capabilities())
+          lsp.marksman.setup(coq.lsp_ensure_capabilities())
+          lsp.jdtls.setup(coq.lsp_ensure_capabilities())
+          lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
         '';
       }
       {
-        plugin = nvim-treesitter.withPlugins
-          (
-            plugins:
-              with plugins; [
-                nix
-                python
-                vim
-                markdown_inline
-                latex
-                c
-                rust
-                bash
-                dockerfile
-                svelte
-                gitignore
-                yaml
-                json
-                html
-                css
-                java
-                javascript
-                typescript
-              ]
-          );
+        plugin = nvim-treesitter.withPlugins (
+          plugins: with plugins; [
+            nix
+            python
+            vim
+            markdown_inline
+            latex
+            c
+            rust
+            bash
+            dockerfile
+            svelte
+            gitignore
+            yaml
+            json
+            html
+            css
+            java
+            javascript
+            typescript
+            norg
+          ]
+        );
         type = "lua";
         config = ''
-                    				require'nvim-treesitter.configs'.setup {
-                      highlight = {
-                        enable = true,
+          require'nvim-treesitter.configs'.setup {
+          	highlight = {
+          		enable = true,
 
-                        additional_vim_regex_highlighting = false,
-                      },
-                    }	
-
-          				'';
+          		additional_vim_regex_highlighting = false,
+          	},
+          }	
+        '';
       }
       {
         plugin = markdown-preview-nvim;
         config = ''
-                                    autocmd Filetype markdown setlocal tabstop=2
-                                    autocmd Filetype markdown setlocal autoindent
-                                    autocmd Filetype markdown setlocal noexpandtab
-                                    autocmd Filetype markdown setlocal shiftwidth=2
-          													let g:mkdp_browser = '${pkgs.librewolf}/bin/librewolf'
+          autocmd Filetype markdown setlocal tabstop=2
+          autocmd Filetype markdown setlocal autoindent
+          autocmd Filetype markdown setlocal noexpandtab
+          autocmd Filetype markdown setlocal shiftwidth=2
+          let g:mkdp_browser = '${pkgs.librewolf}/bin/librewolf'
 
-                    								nmap <C-m> <Plug>MarkdownPreviewToggle
-                              				'';
+          nmap <C-m> <Plug>MarkdownPreviewToggle
+        '';
       }
       {
         plugin = conform-nvim;
         type = "lua";
         config = builtins.readFile ./conform.lua;
+      }
+      nvim-nio
+      neorg-telescope
+      {
+        plugin = neorg;
+        type = "lua";
+        config = builtins.readFile ./neorg.lua;
       }
     ];
   };
