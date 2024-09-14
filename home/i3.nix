@@ -1,7 +1,8 @@
-{ lib
-, pkgs
-, scripts
-, ...
+{
+  lib,
+  pkgs,
+  scripts,
+  ...
 }:
 let
 
@@ -174,8 +175,11 @@ in
       };
 
       assigns = {
-        "${ws2}" = [{ class = "Signal"; } { class = "element"; }];
-        "${ws3}" = [{ class = "spotify"; }];
+        "${ws2}" = [
+          { class = "Signal"; }
+          { class = "element"; }
+        ];
+        "${ws3}" = [ { class = "spotify"; } ];
         "${ws10}" = [
           { class = "thunderbird"; }
           { class = "discord"; }
@@ -270,7 +274,7 @@ in
           notification = false;
         }
         {
-          command = "nitrogen --restore &";
+          command = "${pkgs.nitrogen}/bin/nitrogen --restore &";
           always = true;
         }
         {

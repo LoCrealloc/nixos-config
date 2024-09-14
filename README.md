@@ -6,5 +6,4 @@ This is the NixOS config I daily drive on my Thinkbook.
 
 - [ ] nixify network config
 - [ ] configure tmux
-- [ ] nixify nitrogen config
 - [ ] make config multi-machine capable

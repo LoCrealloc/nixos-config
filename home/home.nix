@@ -15,6 +15,7 @@
     ./neovim
     ./dunst.nix
     ./picom.nix
+    ./nitrogen.nix
   ];
 
   home.username = "loc";
@@ -27,7 +28,6 @@
 
   home.stateVersion = "22.05";
 
-  # GnuPG
   programs.gpg = {
     enable = true;
   };
