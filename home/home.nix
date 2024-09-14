@@ -154,6 +154,12 @@
     # games
     openttd
     prismlauncher
+
+    # ham radio
+    gnuradio
+    gqrx
+    fldigi
+    gpredict
   ];
 
   programs.home-manager.enable = true;
