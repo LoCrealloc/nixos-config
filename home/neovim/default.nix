@@ -2,22 +2,6 @@
 
 {
   # lsp language servers
-  home.packages = with pkgs; [
-    ripgrep # telescope
-
-    nil
-    pyright
-    marksman
-    ccls
-    jdt-language-server
-    rust-analyzer
-
-    prettierd
-    isort
-    black
-    nixfmt-rfc-style
-    rustfmt
-  ];
 
   programs.neovim = {
     enable = true;
@@ -26,9 +10,29 @@
     withRuby = true;
     vimdiffAlias = true;
 
+    extraPackages = with pkgs; [
+      ripgrep # telescope
+      imagemagick
+      ueberzugpp
+
+      nil
+      pyright
+      marksman
+      ccls
+      jdt-language-server
+      rust-analyzer
+
+      prettierd
+      isort
+      black
+      nixfmt-rfc-style
+      rustfmt
+    ];
+
     extraLuaPackages = luaPkgs: [
       luaPkgs.pathlib-nvim # For neorg
       luaPkgs.lua-utils-nvim # For neorg
+      luaPkgs.magick
     ];
 
     extraConfig = ''
@@ -218,6 +222,24 @@
         plugin = neorg;
         type = "lua";
         config = builtins.readFile ./neorg.lua;
+      }
+      {
+        plugin = image-nvim;
+        type = "lua";
+        config = ''
+          require("image").setup({
+          	backend = "ueberzug",
+          	integrations = {
+          		neorg = {
+          			enabled = true,
+          			clear_in_insert_mode = false,
+          			download_remote_images = true,
+          			only_render_image_at_cursor = false,
+          			filetypes = { "norg" },
+          		},
+          	},
+          })
+        '';
       }
     ];
   };
