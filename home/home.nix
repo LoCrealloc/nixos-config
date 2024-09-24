@@ -48,6 +48,7 @@
     signal-desktop
     thunderbird
     weechat
+    element-desktop
 
     # browser
     firefox
