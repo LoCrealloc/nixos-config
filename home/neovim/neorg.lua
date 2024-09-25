@@ -1,3 +1,5 @@
+vim.opt_local.conceallevel = 2 -- image rendering
+
 require("neorg").setup({
   load = {
 	["core.defaults"] = {},
@@ -9,8 +11,8 @@ require("neorg").setup({
 		config = {
 			conceal = true,
 			render_on_enter = true,
-			dpi = 600,
-			scale = 1.25,
+			dpi = 450,
+			scale = 1,
 		},
 	},
 	["core.completion"] = {
