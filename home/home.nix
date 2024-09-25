@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./kitty.nix
     ./zsh.nix
     ./git.nix
     ./i3.nix

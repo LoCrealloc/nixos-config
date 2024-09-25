@@ -228,7 +228,7 @@
         type = "lua";
         config = ''
           require("image").setup({
-          	backend = "ueberzug",
+          	backend = "kitty",
           	integrations = {
           		neorg = {
           			enabled = true,

@@ -1,7 +1,8 @@
-{ lib
-, pkgs
-, scripts
-, ...
+{
+  lib,
+  pkgs,
+  scripts,
+  ...
 }:
 let
 
@@ -54,8 +55,8 @@ in
         "${mod}+Shift+q" = "kill";
 
         # start terminal
-        "${mod}+Return" = "exec alacritty";
-        "${mod}+Shift+Return" = "exec alacritty &";
+        "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+        "${mod}+Shift+Return" = "exec ${pkgs.kitty}/bin/kitty &";
 
         # change focus
         "${mod}+h" = "focus left";
@@ -174,8 +175,11 @@ in
       };
 
       assigns = {
-        "${ws2}" = [{ class = "Signal"; } { class = "element"; }];
-        "${ws3}" = [{ class = "spotify"; }];
+        "${ws2}" = [
+          { class = "Signal"; }
+          { class = "element"; }
+        ];
+        "${ws3}" = [ { class = "spotify"; } ];
         "${ws10}" = [
           { class = "thunderbird"; }
           { class = "discord"; }
