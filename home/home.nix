@@ -16,6 +16,7 @@
     ./neovim
     ./dunst.nix
     ./picom.nix
+    ./nitrogen.nix
   ];
 
   home.username = "loc";
@@ -28,7 +29,6 @@
 
   home.stateVersion = "22.05";
 
-  # GnuPG
   programs.gpg = {
     enable = true;
   };
@@ -49,6 +49,7 @@
     signal-desktop
     thunderbird
     weechat
+    element-desktop
 
     # browser
     firefox
@@ -155,6 +156,12 @@
     # games
     openttd
     prismlauncher
+
+    # ham radio
+    gnuradio
+    gqrx
+    fldigi
+    gpredict
   ];
 
   programs.home-manager.enable = true;

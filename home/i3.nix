@@ -274,7 +274,7 @@ in
           notification = false;
         }
         {
-          command = "nitrogen --restore &";
+          command = "${pkgs.nitrogen}/bin/nitrogen --restore &";
           always = true;
         }
         {
