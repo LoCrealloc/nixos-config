@@ -73,7 +73,7 @@
               theme = 'auto'
             }
           }
-          				'';
+        '';
       }
       {
         plugin = nerdtree;
