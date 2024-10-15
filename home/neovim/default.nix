@@ -77,16 +77,6 @@
         '';
       }
       {
-        plugin = nerdtree;
-        config = ''
-          let g:NERDTreeShowHidden = 1
-          let g:NERDTreeMinimalUI = 1
-          let g:NERDTreeIgnore = []
-          nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-        '';
-      }
-      vim-nerdtree-syntax-highlight
-      {
         plugin = material-nvim;
         type = "lua";
         config = builtins.readFile ./material.lua;
@@ -163,7 +153,7 @@
           lsp.marksman.setup(coq.lsp_ensure_capabilities())
           lsp.jdtls.setup(coq.lsp_ensure_capabilities())
           lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
-          lsp.hls.setup(coq.lsp_ensure_capabilities())
+          -- lsp.hls.setup(coq.lsp_ensure_capabilities())
         '';
       }
       {
@@ -242,6 +232,24 @@
           		},
           	},
           })
+        '';
+      }
+      {
+        plugin = oil-nvim;
+        type = "lua";
+        config = ''
+          require("oil").setup({
+          	default_file_explorer = true,				
+          	view_options = {
+          		show_hidden = true,
+          	},
+          	git = {
+          		mv = function(src_path, dest_path)
+          			return true
+          		end,
+          	},
+          })
+          vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
         '';
       }
     ];
