@@ -7,6 +7,7 @@ require("neorg").setup({
 	["core.autocommands"] = {},
 	["core.integrations.image"] = {},
 	["core.integrations.coq_nvim"] = {},
+	["core.pivot"] = {},
 	["core.latex.renderer"] = {
 		config = {
 			conceal = true,
@@ -34,3 +35,7 @@ require("neorg").setup({
 	},
   }
 })
+
+-- keybindings
+vim.keymap.set("n", "<C-t>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", {})
+vim.keymap.set("n", "<C-CR>", "<Plug>(neorg.esupports.hop.hop-link)", {})
