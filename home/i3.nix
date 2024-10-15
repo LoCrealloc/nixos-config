@@ -145,20 +145,15 @@ in
           "k" = "resize shrink height 10 px or 10 ppt";
           "l" = "resize grow width 10 px or 10 ppt";
 
-          Left = "resize shrink width 10 px or 10 ppt";
-          Down = "resize grow height 10 px or 10 ppt";
-          Up = "resize shrink height 10 px or 10 ppt";
-          Right = "resize grow width 10 px or 10 ppt";
-
           Return = "mode default";
           Escape = "mode default";
         };
 
         move_workspace = {
-          Up = "move workspace to output up";
-          Down = "move workspace to output down";
-          Left = "move workspace to output left";
-          Right = "move workspace to output right";
+          k = "move workspace to output up";
+          j = "move workspace to output down";
+          h = "move workspace to output left";
+          l = "move workspace to output right";
 
           Escape = "mode default";
         };
