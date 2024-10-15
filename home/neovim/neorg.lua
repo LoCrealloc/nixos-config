@@ -16,10 +16,10 @@ require("neorg").setup({
 			scale = 1,
 		},
 	},
-	["core.completion"] = {
-		config = {
-		  engine = "coq_nvim",
-		},
+	--["core.completion"] = {
+	--	config = {
+	--	  engine = "coq_nvim",
+	--	},
 	},
 	["core.integrations.treesitter"] = {
 		config = {
