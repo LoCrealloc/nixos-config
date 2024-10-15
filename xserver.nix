@@ -1,18 +1,19 @@
-{ pkgs
-, lib
-, scripts
-, ...
-}: {
+{
+  pkgs,
+  lib,
+  scripts,
+  ...
+}:
+{
   services.xserver = {
     videoDrivers = [ "nvidia" ];
 
     enable = true;
 
     xkb = {
-      layout = "de,de";
-      variant = "neo_qwertz,bone";
+      layout = "de";
+      variant = "neo_qwertz";
       model = "pc105";
-      options = "grp:lwin_toggle";
     };
 
     desktopManager = {
