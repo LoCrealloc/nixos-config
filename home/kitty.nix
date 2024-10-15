@@ -54,6 +54,8 @@ in
 
       cursor = foreground;
       cursor_shape = "beam";
+
+      confirm_os_window_close = 0;
     };
   };
 }
