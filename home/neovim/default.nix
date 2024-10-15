@@ -21,6 +21,7 @@
       ccls
       jdt-language-server
       rust-analyzer
+      haskell-language-server
 
       prettierd
       isort
@@ -162,6 +163,7 @@
           lsp.marksman.setup(coq.lsp_ensure_capabilities())
           lsp.jdtls.setup(coq.lsp_ensure_capabilities())
           lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
+          lsp.hls.setup(coq.lsp_ensure_capabilities())
         '';
       }
       {

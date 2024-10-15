@@ -91,6 +91,7 @@
     valgrind
     gdb
     jdk21
+    ghc
 
     # IDEs & editors
     jetbrains.pycharm-community
