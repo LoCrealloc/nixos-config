@@ -20,7 +20,7 @@ require("neorg").setup({
 	--	config = {
 	--	  engine = "coq_nvim",
 	--	},
-	},
+	--},
 	["core.integrations.treesitter"] = {
 		config = {
 			install_parsers = false;
