@@ -188,6 +188,7 @@
             javascript
             typescript
             norg
+            haskell
           ]
         );
         type = "lua";
