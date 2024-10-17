@@ -8,7 +8,7 @@ let
 
   i3lock = scripts.i3lock;
 
-  mod = "Mod1";
+  mod = "Mod4";
 
   ws1 = "1";
   ws2 = "2";
