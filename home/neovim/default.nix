@@ -1,8 +1,5 @@
 { pkgs, ... }:
-
 {
-  # lsp language servers
-
   programs.neovim = {
     enable = true;
     withNodeJs = true;
@@ -115,13 +112,6 @@
           \}
 
           nnoremap tc :VimtexCompile<CR>
-        '';
-      }
-      {
-        plugin = indent-blankline-nvim;
-        type = "lua";
-        config = ''
-          require("ibl").setup()
         '';
       }
       vim-ccls
@@ -251,6 +241,11 @@
           })
           vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
         '';
+      }
+      {
+        plugin = dashboard-nvim;
+        type = "lua";
+        config = builtins.readFile ./dashboard.lua;
       }
     ];
   };
