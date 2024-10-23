@@ -6,7 +6,7 @@ in
   programs.rofi = {
     enable = true;
     font = "Hack Nerd Font Mono 18";
-    terminal = "alacritty";
+    terminal = "kitty";
     extraConfig = {
       modes = "drun,run,ssh,filebrowser,window";
       display-drun = "";
@@ -87,8 +87,8 @@ in
   };
 
   home.file."${config.xdg.configHome}/networkmanager-dmenu/config.ini".text = ''
-    		[dmenu]
-    		dmenu_command = rofi
-    		wifi_chars = ▂▄▆█
-    	'';
+    	[dmenu]
+    	dmenu_command = rofi
+    	wifi_chars = ▂▄▆█
+  '';
 }
