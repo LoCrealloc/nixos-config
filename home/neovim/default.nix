@@ -168,6 +168,7 @@
             javascript
             typescript
             norg
+            pkgs.tree-sitter-grammars.tree-sitter-norg-meta
             haskell
           ]
         );
