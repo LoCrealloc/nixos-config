@@ -1,4 +1,4 @@
-vim.opt_local.conceallevel = 2 -- image rendering
+vim.opt_local.conceallevel = 3 -- image rendering
 
 require("neorg").setup({
   load = {
@@ -7,6 +7,13 @@ require("neorg").setup({
 	["core.autocommands"] = {},
 	["core.integrations.image"] = {},
 	["core.integrations.coq_nvim"] = {},
+	["core.integrations.telescope"] = {
+        config = {
+            insert_file_link = {
+                show_title_preview = true,
+            },
+        }
+    },
 	["core.pivot"] = {},
 	["core.latex.renderer"] = {
 		config = {
@@ -30,6 +37,7 @@ require("neorg").setup({
 		config = {
 			workspaces = {
 				uni = "~/Documents/Uni",
+				hamradio = "~/Documents/Amateurfunk/",
 			},
 		},
 	},
