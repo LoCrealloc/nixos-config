@@ -92,6 +92,7 @@
     gdb
     jdk21
     ghc
+    stack
 
     # IDEs & editors
     jetbrains.pycharm-community
@@ -131,6 +132,7 @@
     virt-manager
     pdf2svg
     newsflash
+    wireshark
 
     # documents
     libreoffice
@@ -141,6 +143,7 @@
     google-fonts
 
     # shell
+    kitty
     alacritty
     htop
     gtop
