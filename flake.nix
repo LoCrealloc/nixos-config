@@ -64,6 +64,7 @@
           ./cups.nix
           ./input.nix
           ./networking.nix
+          ./nix.nix
           ./nvidia.nix
           ./pam.nix
           ./pipewire.nix
