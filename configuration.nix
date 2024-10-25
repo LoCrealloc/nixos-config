@@ -20,6 +20,8 @@ in
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
 
+  programs.wireshark.enable = true;
+
   services.udev = {
     packages = [
       pkgs.platformio-core
@@ -45,7 +47,10 @@ in
   services.gvfs.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment.systemPackages = [
     nvidia-offload
