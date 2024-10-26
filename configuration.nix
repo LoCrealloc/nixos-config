@@ -17,6 +17,17 @@ in
     useXkbConfig = true;
   };
 
+  services.logind = {
+    lidSwitch = "suspend-then-hibernate";
+    lidSwitchDocked = "suspend-then-hibernate";
+    extraConfig = ''
+      HandlePowerKey=hibernate
+    '';
+  };
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=60m
+  '';
+
   hardware.bluetooth.enable = true;
   security.rtkit.enable = true;
 
@@ -57,14 +68,8 @@ in
     pkgs.killall
     pkgs.git
     pkgs.pciutils
-    pkgs.zsh
     pkgs.vim
-    pkgs.i3-gaps
     pkgs.glxinfo
-    (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
-    pkgs.pulseaudio
-    pkgs.os-prober
-    pkgs.borgbackup
     pkgs.qemu
     pkgs.libvirt
     pkgs.lutris
