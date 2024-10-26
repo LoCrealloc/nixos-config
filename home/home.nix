@@ -94,6 +94,11 @@
     ghc
     stack
 
+    # Nix tools
+    nix-output-monitor
+    nix-tree
+    nix-diff
+
     # IDEs & editors
     jetbrains.pycharm-community
 
