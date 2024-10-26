@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.fprintd = {
-    enable = true;
+    enable = false;
     tod.enable = true;
     tod.driver = pkgs.libfprint-2-tod1-elan;
   };
