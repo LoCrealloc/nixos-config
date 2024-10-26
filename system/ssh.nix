@@ -1,6 +1,6 @@
 {
   services.openssh = {
-    enable = true;
+    enable = false;
     openFirewall = true;
     settings = {
       PermitRootLogin = "no";
