@@ -7,3 +7,4 @@ This is the NixOS config I daily drive on my Thinkbook.
 - [ ] nixify network config
 - [ ] configure tmux
 - [ ] make config multi-machine capable
+- [ ] MORE neovim plugins
