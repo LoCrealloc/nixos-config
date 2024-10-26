@@ -39,7 +39,7 @@
   };
 
   home-manager.users = {
-    loc = import ./home/home.nix;
+    loc = import ../home/home.nix;
   };
 
   sops.secrets."user/hashedPassword".neededForUsers = true;
