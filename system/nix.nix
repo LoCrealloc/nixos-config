@@ -5,7 +5,7 @@
   sops = {
     secrets."nix/github" = {
       key = "github_token";
-      sopsFile = ./secrets/nix.yml;
+      sopsFile = ../secrets/nix.yml;
     };
     templates."nix" = {
       content = ''
