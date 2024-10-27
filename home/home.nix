@@ -98,6 +98,7 @@
     nix-output-monitor
     nix-tree
     nix-diff
+    comma
 
     # IDEs & editors
     jetbrains.pycharm-community
@@ -155,9 +156,9 @@
     btop
     powertop
     calc
-    neofetch
     coreutils
     gnugrep
+    fastfetch
 
     # GTK
     gtk-engine-murrine
