@@ -12,6 +12,7 @@
       "*/venv"
       "*/.venv"
       "Games"
+      ".local/share/Steam"
     ];
     compression = "zlib";
     removableDevice = true;
