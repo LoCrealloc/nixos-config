@@ -12,7 +12,7 @@
       imagemagick
       ueberzugpp
 
-      nil
+      nixd
       pyright
       marksman
       ccls
@@ -137,7 +137,7 @@
         type = "lua";
         config = ''
           local lsp = require "lspconfig"
-          lsp.nil_ls.setup(coq.lsp_ensure_capabilities())
+          lsp.nixd.setup(coq.lsp_ensure_capabilities())
           lsp.pyright.setup(coq.lsp_ensure_capabilities())
           lsp.ccls.setup(coq.lsp_ensure_capabilities())
           lsp.marksman.setup(coq.lsp_ensure_capabilities())
