@@ -23,7 +23,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
       sops-nix,
@@ -32,7 +31,7 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      scripts = import ./scripts.nix ({ pkgs = import nixpkgs { inherit system; }; });
+      scripts = import ./scripts.nix { pkgs = import nixpkgs { inherit system; }; };
     in
     {
       formatter."x86_64-linux" = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
