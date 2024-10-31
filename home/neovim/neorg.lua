@@ -3,6 +3,7 @@ vim.opt_local.conceallevel = 3 -- image rendering
 require("neorg").setup({
   load = {
 	["core.defaults"] = {},
+	["core.export"] = {},
 	["core.concealer"] = {},
 	["core.autocommands"] = {},
 	["core.integrations.image"] = {},
