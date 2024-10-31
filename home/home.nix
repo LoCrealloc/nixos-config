@@ -146,6 +146,7 @@
     libreoffice
     texlive.combined.scheme-full
     mupdf
+    obsidian
 
     # fonts
     google-fonts
