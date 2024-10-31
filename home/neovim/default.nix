@@ -59,6 +59,8 @@
       nnoremap <F4> :tabn<CR>
 
       nn <esc> :noh<cr>
+
+      set wildmode=longest:full
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -83,14 +85,14 @@
       telescope-project-nvim
       {
         plugin = telescope-nvim;
+        type = "lua";
         config = ''
-          nnoremap <F1> :tabnew<CR>:Telescope find_files<CR>
-          nnoremap <F2> :tabclose<CR>
+          vim.keymap.set("n", "<F1>", ":tabnew<CR>:Telescope find_files<CR>")
+          vim.keymap.set("n", "<F2>", ":tabclose<CR>")
 
-          nnoremap ff <cmd>Telescope find_files<cr>
-          nnoremap fg <cmd>Telescope live_grep<cr>
-          nnoremap fb <cmd>Telescope buffers<cr>
-          nnoremap fh <cmd>Telescope help_tags<cr>
+          vim.keymap.set("n", "ff", ":Telescope find_files<CR>")
+          vim.keymap.set("n", "fg", ":Telescope live_grep<CR>")
+          vim.keymap.set("n", "fb", ":Telescope buffers<CR>")
         '';
       }
       vim-devicons
@@ -247,6 +249,11 @@
         plugin = dashboard-nvim;
         type = "lua";
         config = builtins.readFile ./dashboard.lua;
+      }
+      {
+        plugin = obsidian-nvim;
+        type = "lua";
+        config = builtins.readFile ./obsidian.lua;
       }
     ];
   };
