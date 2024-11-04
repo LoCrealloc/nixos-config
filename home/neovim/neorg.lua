@@ -1,5 +1,3 @@
-vim.opt_local.conceallevel = 3 -- image rendering
-
 require("neorg").setup({
   load = {
 	["core.defaults"] = {},
