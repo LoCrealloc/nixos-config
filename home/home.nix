@@ -64,6 +64,7 @@
     glava
     vlc
     sonixd
+    spotify
 
     # infrastructure
     gnupg
