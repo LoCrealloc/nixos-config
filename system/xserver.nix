@@ -6,7 +6,7 @@
 }:
 {
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = [ "amdgpu" ];
 
     enable = true;
 
@@ -44,9 +44,13 @@
       options = lib.mkForce "";
     };
 
+    services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
+
     hardware.nvidia = {
       prime = {
         offload.enable = lib.mkForce false;
+        offload.enableOffloadCmd = lib.mkForce false;
+
         sync.enable = lib.mkForce true;
       };
       powerManagement = {

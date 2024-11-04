@@ -4,7 +4,7 @@
 
   hardware.nvidia = {
 
-    open = true;
+    open = false;
 
     modesetting.enable = true;
     powerManagement = {
@@ -14,6 +14,7 @@
 
     prime = {
       offload.enable = true;
+      offload.enableOffloadCmd = true;
 
       nvidiaBusId = "PCI:1:00:0";
 
@@ -24,9 +25,13 @@
   specialisation = {
     external-display.configuration = {
       system.nixos.tags = [ "external-display" ];
+
+      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
+
       hardware.nvidia = {
         prime = {
           offload.enable = lib.mkForce false;
+          offload.enableOffloadCmd = lib.mkForce false;
           sync.enable = lib.mkForce true;
         };
         powerManagement = {
