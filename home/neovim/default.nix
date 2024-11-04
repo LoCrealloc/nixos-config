@@ -63,6 +63,10 @@
       set wildmode=longest:full
     '';
 
+    extraLuaConfig = ''
+      	
+    '';
+
     plugins = with pkgs.vimPlugins; [
       {
         plugin = lualine-nvim;
@@ -87,12 +91,13 @@
         plugin = telescope-nvim;
         type = "lua";
         config = ''
-          vim.keymap.set("n", "<F1>", ":tabnew<CR>:Telescope find_files<CR>")
-          vim.keymap.set("n", "<F2>", ":tabclose<CR>")
+                    vim.keymap.set("n", "<F1>", ":tabnew<CR>:Telescope find_files<CR>")
+                    vim.keymap.set("n", "<F2>", ":tabclose<CR>")
 
-          vim.keymap.set("n", "ff", ":Telescope find_files<CR>")
-          vim.keymap.set("n", "fg", ":Telescope live_grep<CR>")
-          vim.keymap.set("n", "fb", ":Telescope buffers<CR>")
+                    vim.keymap.set("n", "ff", ":Telescope find_files<CR>")
+
+                    vim.keymap.set("n", "fg", ":Telescope live_grep<CR>")
+                    vim.keymap.set("n", "fb", ":Telescope buffers<CR>")
         '';
       }
       vim-devicons
@@ -146,6 +151,17 @@
           lsp.jdtls.setup(coq.lsp_ensure_capabilities())
           lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
           lsp.hls.setup(coq.lsp_ensure_capabilities())
+
+          vim.opt.updatetime = 1000
+
+          vim.diagnostic.config({ virtual_text = false })
+          vim.api.nvim_create_autocmd({ "CursorHold" }, {
+          	callback = function()
+          			vim.diagnostic.open_float()
+          	end,
+          })
+
+          vim.keymap.set("i", "<C-o>", function() vim.lsp.buf.code_action({apply=true}) end)
         '';
       }
       {
