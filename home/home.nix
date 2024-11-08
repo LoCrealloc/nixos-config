@@ -125,6 +125,7 @@
     freecad
     openscad
     #kicad
+    xnec2c
 
     # miscellaneous
     monero-gui
