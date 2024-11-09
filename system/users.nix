@@ -16,7 +16,6 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      "docker"
       "video"
       "camera"
       "borg"
