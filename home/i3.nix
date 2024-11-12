@@ -133,7 +133,7 @@ in
         "${mod}+n" = "exec dunstctl set-paused toggle";
 
         # screenshots
-        "Print --release" = "exec  scrot -s | xclip -selection clipboard -target image/png";
+        "Print --release" = "exec scrot -s - | xclip -selection clipboard -target image/png";
 
         "Shift+Print --release" = "exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`'";
       };
@@ -297,6 +297,8 @@ in
       ];
 
       bars = [ ];
+
+      focus.newWindow = "none";
     };
 
     extraConfig = ''
