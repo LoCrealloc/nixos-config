@@ -298,5 +298,9 @@ in
 
       bars = [ ];
     };
+
+    extraConfig = ''
+      no_focus [class="obsidian"]
+    '';
   };
 }
