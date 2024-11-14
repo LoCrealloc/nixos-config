@@ -41,19 +41,12 @@
       set autoindent
       set noexpandtab
       set tabstop=4
-      set shiftwidth=4
+      " settings shiftwidth to 0 makes it always use the value of tabstop
+      set shiftwidth=0
 
       inoremap <F1> <ESC>
       nnoremap <F1> <ESC>
       vnoremap <F1> <ESC>
-
-
-      au BufRead,BufNewFile *.nix set filetype=nix
-
-      autocmd Filetype nix setlocal tabstop=2
-      autocmd Filetype nix setlocal autoindent
-      autocmd Filetype nix setlocal noexpandtab
-      autocmd Filetype nix setlocal shiftwidth=2
 
       nnoremap <F3> :tabp<CR>
       nnoremap <F4> :tabn<CR>
@@ -63,9 +56,7 @@
       set wildmode=longest:full
     '';
 
-    extraLuaConfig = ''
-      	
-    '';
+    extraLuaConfig = builtins.readFile ./tabstops.lua;
 
     plugins = with pkgs.vimPlugins; [
       {
@@ -91,13 +82,13 @@
         plugin = telescope-nvim;
         type = "lua";
         config = ''
-                    vim.keymap.set("n", "<F1>", ":tabnew<CR>:Telescope find_files<CR>")
-                    vim.keymap.set("n", "<F2>", ":tabclose<CR>")
+          vim.keymap.set("n", "<F1>", ":tabnew<CR>:Telescope find_files<CR>")
+          vim.keymap.set("n", "<F2>", ":tabclose<CR>")
 
-                    vim.keymap.set("n", "ff", ":Telescope find_files<CR>")
+          vim.keymap.set("n", "ff", ":Telescope find_files<CR>")
 
-                    vim.keymap.set("n", "fg", ":Telescope live_grep<CR>")
-                    vim.keymap.set("n", "fb", ":Telescope buffers<CR>")
+          vim.keymap.set("n", "fg", ":Telescope live_grep<CR>")
+          vim.keymap.set("n", "fb", ":Telescope buffers<CR>")
         '';
       }
       vim-devicons
