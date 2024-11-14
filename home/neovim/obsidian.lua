@@ -14,7 +14,7 @@ require("obsidian").setup({
 
   daily_notes = {
     -- Optional, if you keep daily notes in a separate directory.
-    folder = "notes/dailies",
+    folder = "dailies",
     -- Optional, if you want to change the date format for the ID of daily notes.
     date_format = "%Y-%m-%d",
     -- Optional, if you want to change the date format of the default alias of daily notes.
@@ -130,19 +130,14 @@ require("obsidian").setup({
   ---@param url string
   follow_url_func = function(url)
     -- Open the URL in the default web browser.
-    vim.fn.jobstart({"open", url})  -- Mac OS
-    -- vim.fn.jobstart({"xdg-open", url})  -- linux
-    -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
-    -- vim.ui.open(url) -- need Neovim 0.10.0+
+    vim.ui.open(url) -- need Neovim 0.10.0+
   end,
 
   -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
   -- file it will be ignored but you can customize this behavior here.
   ---@param img string
   follow_img_func = function(img)
-    vim.fn.jobstart { "qlmanage", "-p", img }  -- Mac OS quick look preview
-    -- vim.fn.jobstart({"xdg-open", url})  -- linux
-    -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
+    vim.fn.jobstart({"xdg-open", url})  -- linux
   end,
 
   -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
@@ -191,12 +186,18 @@ require("obsidian").setup({
 		if os.execute("[ \"$(pgrep -fl obsidian | grep electron | wc -l)\" = '0' ]") ~= 0 and vim.fn.filereadable(tostring(note.path)) ~= 0 then
 			vim.cmd("ObsidianOpen " .. tostring(note.path))
 		end
+
+		vim.keymap.del("n", "ff")
+		vim.keymap.set("n", "ff", ":ObsidianQuickSwitch<CR>")
 	end,
 
     -- Runs anytime you leave the buffer for a note.
     ---@param client obsidian.Client
     ---@param note obsidian.Note
-    leave_note = function(client, note) end,
+    leave_note = function(client, note) 
+		vim.keymap.del("n", "ff")
+	  	vim.keymap.set("n", "ff", ":Telescope find_files<CR>")
+	end,
 
     -- Runs right before writing the buffer for a note.
     ---@param client obsidian.Client
@@ -221,13 +222,6 @@ require("obsidian").setup({
     -- If this is a relative path it will be interpreted as relative to the vault root.
     -- You can always override this per image by passing a full path to the command instead of just a filename.
     img_folder = "assets/images",  -- This is the default
-
-    -- Optional, customize the default name or prefix when pasting images via `:ObsidianPasteImg`.
-    ---@return string
-    img_name_func = function()
-      -- Prefix image names with timestamp.
-      return string.format("%s-", os.time())
-    end,
 
     -- A function that determines the text to insert in the note when pasting an image.
     -- It takes two arguments, the `obsidian.Client` and an `obsidian.Path` to the image file.
