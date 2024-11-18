@@ -66,7 +66,11 @@
     pkgs.libvirt
     pkgs.lutris
     pkgs.wineWowPackages.stable
+    pkgs.man-pages
+    pkgs.man-pages-posix
   ];
+
+  documentation.dev.enable = true;
 
   system.stateVersion = "22.05";
 }
