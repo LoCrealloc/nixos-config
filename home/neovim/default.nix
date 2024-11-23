@@ -56,7 +56,11 @@
       set wildmode=longest:full
     '';
 
-    extraLuaConfig = builtins.readFile ./tabstops.lua;
+    extraLuaConfig =
+      ''
+        vim.opt.inccommand = "split"
+      ''
+      + builtins.readFile ./tabstops.lua;
 
     plugins = with pkgs.vimPlugins; [
       {
