@@ -252,8 +252,8 @@ in
       };
 
       gaps = {
-        inner = 20;
-        outer = 10;
+        inner = 10;
+        outer = 5;
       };
 
       window = {
