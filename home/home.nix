@@ -60,7 +60,7 @@
     # media
     playerctl
     pavucontrol
-    cava
+    pkgs-stable.cava
     glava
     vlc
     sonixd
