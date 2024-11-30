@@ -36,7 +36,7 @@ require('dashboard').setup {
 				key = 'b',
 				key_hl = 'Number',
 				key_format = ' %s',
-				action = 'Neorg workspace uni'
+				action = 'ObsidianQuickSwitch'
 			},
 			{
 				icon = ' ',
