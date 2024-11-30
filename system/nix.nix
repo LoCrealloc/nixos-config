@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  environment.sessionVariables.NIX_USER_CONF_FILES = config.sops.templates."nix".path;
+  #environment.sessionVariables.NIX_USER_CONF_FILES = config.sops.templates."nix".path;
 
   sops = {
     secrets."nix/github" = {
