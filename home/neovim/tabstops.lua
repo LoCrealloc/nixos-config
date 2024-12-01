@@ -1,6 +1,6 @@
 -- Haskell, Nix
 vim.api.nvim_create_autocmd(
-	{"BufRead", "BufNewFile"},
+	{"BufRead", "BufNewFile", "BufEnter"},
 	{
 		pattern={"*.hs", "*.nix"}, 
 		callback=function() 
