@@ -101,9 +101,6 @@
     nix-diff
     comma
 
-    # IDEs & editors
-    jetbrains.pycharm-community
-
     # media editing
     darktable
     gimp
@@ -146,7 +143,10 @@
     libreoffice
     texlive.combined.scheme-full
     mupdf
+
+    # uni
     obsidian
+    anki
 
     # fonts
     google-fonts
