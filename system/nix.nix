@@ -2,6 +2,15 @@
 {
   #environment.sessionVariables.NIX_USER_CONF_FILES = config.sops.templates."nix".path;
 
+  nix = {
+    settings = {
+      substituters = [
+        "https://locrealloc.cachix.org"
+      ];
+      trusted-public-keys = [ "locrealloc.cachix.org-1:wrc3FucRL/Y76K/jwKmOYSscIlHgGNPA/Wl50eQTcZM=" ];
+    };
+  };
+
   sops = {
     secrets."nix/github" = {
       key = "github_token";
