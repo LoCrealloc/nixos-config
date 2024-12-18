@@ -115,7 +115,7 @@
     #inkscape
     audacity
     #kdenlive
-    tone
+    #tone
 
     # 3d printing / electronics
     #cura
