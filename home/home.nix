@@ -25,7 +25,8 @@
   xdg.dataHome = "/home/loc/.local/share";
   xdg.configHome = "/home/loc/.config";
 
-  home.file.".icons/default".source = "${config.gtk.cursorTheme.package}/share/icons/${config.gtk.cursorTheme.name}";
+  home.file.".icons/default".source =
+    "${config.gtk.cursorTheme.package}/share/icons/${config.gtk.cursorTheme.name}";
 
   home.stateVersion = "22.05";
 
@@ -121,7 +122,7 @@
     #cura
     freecad
     openscad
-    #kicad
+    kicad
     xnec2c
 
     # miscellaneous
