@@ -1,5 +1,5 @@
 vim.g.coq_settings = {
-	auto_start = true,
+	auto_start = false,
 	display = {
 		statusline = {
 			helo = false
