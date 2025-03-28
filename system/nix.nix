@@ -8,6 +8,10 @@
         "https://locrealloc.cachix.org"
       ];
       trusted-public-keys = [ "locrealloc.cachix.org-1:wrc3FucRL/Y76K/jwKmOYSscIlHgGNPA/Wl50eQTcZM=" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
   };
 

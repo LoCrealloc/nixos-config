@@ -1,4 +1,5 @@
 {
+  conf,
   pkgs,
   config,
   pkgs-stable,
@@ -9,15 +10,13 @@
     ./kitty.nix
     ./zsh.nix
     ./git.nix
-    ./i3.nix
-    ./polybar/polybar.nix
-    ./rofi.nix
+    (if conf.window-system == "x11" then ./x11 else ./wayland)
     ./gtk.nix
     ./neovim
     ./dunst.nix
-    ./picom.nix
-    ./nitrogen.nix
   ];
+
+  programs.home-manager.enable = true;
 
   home.username = "loc";
   home.homeDirectory = "/home/loc";
@@ -27,8 +26,6 @@
 
   home.file.".icons/default".source =
     "${config.gtk.cursorTheme.package}/share/icons/${config.gtk.cursorTheme.name}";
-
-  home.stateVersion = "22.05";
 
   programs.gpg = {
     enable = true;
@@ -42,6 +39,8 @@
   };
 
   home.packages = with pkgs; [
+    netbird-ui
+
     pkgs-stable.cura
     pkgs-stable.iamb
 
@@ -178,7 +177,7 @@
     gpredict
   ];
 
-  programs.home-manager.enable = true;
-
   services.network-manager-applet.enable = true;
+
+  home.stateVersion = "22.05";
 }

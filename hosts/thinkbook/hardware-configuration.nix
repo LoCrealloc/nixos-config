@@ -1,15 +1,25 @@
-{ config
-, lib
-, modulesPath
-, ...
-}: {
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "usbhid"
+    "sdhci_pci"
+  ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" "v4l2loopback" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "v4l2loopback"
+  ];
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
 
   fileSystems."/" = {
@@ -34,10 +44,11 @@
   fileSystems."/home/loc/backup" = {
     device = "/dev/disk/by-uuid/8d33822d-00fb-452d-829c-11555eb43193";
     fsType = "ext4";
-    options = [ "nofail" "x-systemd.device-timeout=5" ];
+    options = [
+      "nofail"
+      "x-systemd.device-timeout=5"
+    ];
   };
-
-  networking.useDHCP = lib.mkDefault true;
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

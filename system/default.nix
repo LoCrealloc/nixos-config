@@ -1,23 +1,69 @@
 {
-  imports = [
-    ./configuration.nix
-    ./hardware-configuration.nix
+  conf,
+  nixpkgs,
+  nixpkgs-stable,
+  home-manager,
+  sops-nix,
+  ...
+}@inputs:
+let
+  inherit (conf) system;
+  inherit (nixpkgs) lib;
+
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfreePredicate =
+      pkg:
+      builtins.elem (lib.getName pkg) [
+        "discord"
+        "spotify"
+        "obsidian"
+        "steam"
+        "steam-unwrapped"
+        "nvidia-x11"
+        "nvidia-settings"
+      ];
+  };
+
+  scripts = import ../scripts.nix { inherit pkgs; }; # i need to think of a better way for this mess
+
+  specialArgs = {
+    inherit scripts;
+  } // inputs;
+in
+nixpkgs.lib.nixosSystem {
+  inherit system pkgs specialArgs;
+
+  modules = [
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.extraSpecialArgs = {
+        inherit conf scripts;
+        pkgs-stable = import nixpkgs-stable { inherit system; };
+      };
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
+    }
+    sops-nix.nixosModules.sops
+
+    conf.hostConfig
+    conf.hardware-configuration
 
     ./boot.nix
-    ./borg.nix
     ./cups.nix
-    ./input.nix
+    ./font.nix
+    ./general.nix
+    ./layout.nix
     ./networking.nix
     ./nix.nix
-    ./nvidia.nix
     ./pam.nix
     ./pipewire.nix
-    ./sddm.nix
     ./sops.nix
     ./ssh.nix
     ./steam.nix
     ./users.nix
     ./virtualisation.nix
-    ./xserver.nix
-  ];
+    (if conf.window-system == "x11" then ./x11 else ./wayland)
+  ] ++ conf.host-modules;
 }

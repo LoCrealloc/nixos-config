@@ -24,39 +24,47 @@
   outputs =
     {
       nixpkgs,
-      home-manager,
-      sops-nix,
-      nixpkgs-stable,
       ...
     }@inputs:
-    let
-      system = "x86_64-linux";
-      scripts = import ./scripts.nix { pkgs = import nixpkgs { inherit system; }; };
-    in
     {
       formatter."x86_64-linux" = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
 
-      nixosConfigurations.locs-thinkbook = nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = inputs // {
-          scripts = scripts;
-        };
+      nixosConfigurations =
+        let
+          lib = nixpkgs.lib;
 
-        modules = [
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = {
-              scripts = scripts;
-              pkgs-stable = import nixpkgs-stable { inherit system; };
+          hosts = builtins.attrNames (builtins.readDir ./hosts);
+          importHostConf =
+            host:
+            import ./hosts/${host} inputs
+            // {
+              hostname = "locs-${host}";
+              hardware-configuration = ./hosts/${host}/hardware-configuration.nix;
+              host-modules = map (module: ./. + ("/hosts/${host}/modules/" + module)) (
+                lib.lists.remove ".gitkeep" (builtins.attrNames (builtins.readDir ./hosts/${host}/modules))
+              );
             };
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
-          }
-          sops-nix.nixosModules.sops
 
-          ./system
-        ];
-      };
+          mkNixOSConfig =
+            host:
+            import ./system (
+              inputs
+              // {
+                conf = importHostConf host;
+              }
+            );
+        in
+        builtins.listToAttrs (
+          map (
+            host:
+            let
+              system = mkNixOSConfig host;
+            in
+            {
+              name = system.config.networking.hostName;
+              value = system;
+            }
+          ) hosts
+        );
     };
 }

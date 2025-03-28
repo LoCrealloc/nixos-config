@@ -1,5 +1,6 @@
-{ pkgs, ... }: {
-  networking.hostName = "locs-thinkbook";
+{ conf, pkgs, ... }:
+{
+  networking.hostName = conf.hostname;
   networking.networkmanager = {
     plugins = with pkgs; [
       networkmanager-openconnect
