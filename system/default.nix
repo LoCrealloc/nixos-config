@@ -4,6 +4,7 @@
   nixpkgs-stable,
   home-manager,
   sops-nix,
+  impermanence,
   ...
 }@inputs:
 let
@@ -46,6 +47,8 @@ nixpkgs.lib.nixosSystem {
       home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
     }
     sops-nix.nixosModules.sops
+    impermanence.nixosModules.impermanence
+
 
     conf.hostConfig
     conf.hardware-configuration

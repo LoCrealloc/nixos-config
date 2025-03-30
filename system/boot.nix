@@ -9,7 +9,6 @@
       efiSupport = true;
       enable = true;
       device = "nodev";
-      useOSProber = true;
       extraEntries = ''
         menuentry "Reboot" {
           reboot

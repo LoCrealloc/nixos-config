@@ -1,7 +1,8 @@
+{ conf, ... }:
 {
   sops = {
     defaultSopsFile = ../secrets/secrets.yml;
-    age.keyFile = "/home/loc/.config/sops/age/keys.txt";
+    age.keyFile = conf.agekey;
     gnupg.sshKeyPaths = [ ];
   };
 }
