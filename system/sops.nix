@@ -2,7 +2,7 @@
 {
   sops = {
     defaultSopsFile = ../secrets/secrets.yml;
-    age.keyFile = conf.agekey;
+    age.keyFile = conf.ageKey;
     gnupg.sshKeyPaths = [ ];
   };
 }

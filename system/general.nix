@@ -29,6 +29,8 @@
 
   programs.wireshark.enable = true;
 
+  security.polkit.enable = true;
+
   services.udev = {
     packages = [
       pkgs.platformio-core

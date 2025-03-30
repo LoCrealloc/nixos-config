@@ -4,7 +4,7 @@
   ...
 }:
 let
-  mod = "Mod1";
+  mod = "Mod4";
 
   ws1 = "1";
   ws2 = "2";
@@ -30,14 +30,16 @@ in
       };
 
       keybindings = lib.mkOptionDefault {
-        #"${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
-        "${mod}+d" = "exec ${pkgs.wofi}/bin/wofi --show drun";
+        "${mod}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
 
         # volume adjust
-        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86AudioRaiseVolume" =
+          "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" =
+          "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" =
+          "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-source-mute @DEFAULT_SOURCE@ toggle";
 
         # media player
         "XF86AudioPlay" = "exec playerctl play-pause";
@@ -52,28 +54,23 @@ in
         "${mod}+Shift+q" = "kill";
 
         # start terminal
-        "${mod}+Return" = "exec alacritty";
-        "${mod}+Shift+Return" = "exec alacritty &";
+        "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+        "${mod}+Shift+Return" = "exec ${pkgs.kitty}/bin/kitty &";
 
         # change focus
-        "${mod}+j" = "focus left";
-        "${mod}+k" = "focus down";
-        "${mod}+l" = "focus up";
-        "${mod}+odiaeresis" = "focus right";
-
-        "${mod}+Left" = "focus left";
-        "${mod}+Down" = "focus down";
-        "${mod}+Up" = "focus up";
-        "${mod}+Right" = "focus right";
+        "${mod}+h" = "focus left";
+        "${mod}+j" = "focus down";
+        "${mod}+k" = "focus up";
+        "${mod}+l" = "focus right";
 
         # move window
-        "${mod}+Shift+j" = "move left";
-        "${mod}+Shift+k" = "move down";
-        "${mod}+Shift+l" = "move up";
-        "${mod}+Shift+odiaeresis" = "move right";
+        "${mod}+Shift+h" = "move left";
+        "${mod}+Shift+j" = "move down";
+        "${mod}+Shift+k" = "move up";
+        "${mod}+Shift+l" = "move right";
 
         # split horizontal
-        "${mod}+h" = "split h";
+        "${mod}+b" = "split h";
 
         # split vertical
         "${mod}+v" = "split v";
@@ -120,7 +117,7 @@ in
         "${mod}+Shift+c" = "reload";
         "${mod}+Shift+r" = "restart";
         "${mod}+Shift+e" =
-          "exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'swaymsg exit'";
+          "exec sway-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'swaymsg exit'";
 
         # switch mode
         "${mod}+r" = "mode resize";
@@ -133,25 +130,20 @@ in
 
       modes = {
         resize = {
-          "j" = "resize shrink width 10 px or 10 ppt";
-          "k" = "resize grow height 10 px or 10 ppt";
-          "l" = "resize shrink height 10 px or 10 ppt";
-          "odiaeresis" = "resize grow width 10 px or 10 ppt";
-
-          Left = "resize shrink width 10 px or 10 ppt";
-          Down = "resize grow height 10 px or 10 ppt";
-          Up = "resize shrink height 10 px or 10 ppt";
-          Right = "resize grow width 10 px or 10 ppt";
+          "h" = "resize shrink width 10 px or 10 ppt";
+          "j" = "resize grow height 10 px or 10 ppt";
+          "k" = "resize shrink height 10 px or 10 ppt";
+          "l" = "resize grow width 10 px or 10 ppt";
 
           Return = "mode default";
           Escape = "mode default";
         };
 
         move_workspace = {
-          Up = "move workspace to output up";
-          Down = "move workspace to output down";
-          Left = "move workspace to output left";
-          Right = "move workspace to output right";
+          "h" = "move workspace to output up";
+          "j" = "move workspace to output down";
+          "k" = "move workspace to output left";
+          "l" = "move workspace to output right";
 
           Escape = "mode default";
         };
@@ -250,8 +242,8 @@ in
       };
 
       gaps = {
-        inner = 20;
-        outer = 10;
+        inner = 10;
+        outer = 5;
       };
 
       window = {
@@ -260,19 +252,9 @@ in
 
       floating.border = 0;
 
+      focus.newWindow = "none";
+
       startup = [
-        {
-          command = "nitrogen --restore &";
-          always = true;
-        }
-        {
-          # Restore workspace 10 layout from saved file
-          command = "swaymsg 'workspace 10; append_layout /home/loc/.config/i3/workspaces/10.json'";
-        }
-        {
-          # Restore workspace 2 layout from saved file
-          command = "swaymsg 'workspace 2; append_layout /home/loc/.config/i3/workspaces/2.json'";
-        }
         {
           command = "thunderbird";
           always = false;
@@ -287,6 +269,10 @@ in
         }
         {
           command = "swaymsg 'workspace 2; exec signal-desktop &'";
+          always = false;
+        }
+        {
+          command = "swaymsg 'workspace 1'";
           always = false;
         }
       ];
@@ -308,11 +294,9 @@ in
         };
       };
 
-      output = {
-        "eDP-*" = {
-          scale = "1.25";
-        };
-      };
     };
+    extraConfig = ''
+      no_focus [class="obsidian"]
+    '';
   };
 }

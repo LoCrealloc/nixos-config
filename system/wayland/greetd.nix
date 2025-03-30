@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   services.greetd = {
     enable = true;
@@ -5,10 +6,10 @@
     settings = {
       default_session = {
         user = "loc";
-        command = "agreety --cmd sway";
+        command = "${pkgs.sway}/bin/sway --unsupported-gpu";
       };
       initial_session = {
-        command = "sway --unsupported-gpu";
+        command = "${pkgs.sway}/bin/sway --unsupported-gpu";
         user = "loc";
       };
     };
