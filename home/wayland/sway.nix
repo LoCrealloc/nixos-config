@@ -140,9 +140,9 @@ in
         };
 
         move_workspace = {
-          "h" = "move workspace to output up";
-          "j" = "move workspace to output down";
-          "k" = "move workspace to output left";
+          "h" = "move workspace to output left";
+          "j" = "move workspace to output up";
+          "k" = "move workspace to output down";
           "l" = "move workspace to output right";
 
           Escape = "mode default";

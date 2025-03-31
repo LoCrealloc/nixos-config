@@ -62,7 +62,6 @@ _: {
       };
       "/swap" = {
         device = "/dev/disk/by-uuid/ca1ec8b7-4c38-4c9e-a9ee-4c66bc4462aa";
-
         fsType = "btrfs";
         neededForBoot = true;
         options = [

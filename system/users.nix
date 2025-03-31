@@ -26,6 +26,9 @@
       "wireshark"
     ];
     hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvFUhkhp13FXwFfbBrAEMHWjBbo6pNhKPwp12DAoWS+"
+    ];
   };
 
   users.users.copy = {
@@ -42,5 +45,4 @@
   };
 
   sops.secrets."user/hashedPassword".neededForUsers = true;
-
 }

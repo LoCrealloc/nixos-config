@@ -8,6 +8,7 @@
       ".ssh"
 
       ".config/dconf"
+      ".config/sops"
       ".local/share/steam"
       ".thunderbird"
       ".librewolf"
@@ -18,10 +19,13 @@
 
   cache = {
     directories = [
-      ""
+      ".config/discord"
+      ".config/Element"
+      ".config/Signal"
+      ".config/spotify"
+      ".cache/spotify"
     ];
     files = [
-      ".zsh_history"
     ];
   };
 }
