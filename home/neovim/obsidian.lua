@@ -21,8 +21,8 @@ require("obsidian").setup({
     alias_format = "%B %-d, %Y",
     -- Optional, default tags to add to each new daily note created.
     default_tags = { "daily-notes" },
-    -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-    template = nil
+    -- (x) Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+    template = "daily.md"
   },
 
   -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
@@ -124,6 +124,13 @@ require("obsidian").setup({
 
     return out
   end,
+
+  -- Optional, for templates (see below).
+  templates = {
+    folder = ".templates",
+    date_format = "%d.%m.%Y",
+    time_format = "%H:%M",
+  },
 
   -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
   -- URL it will be ignored but you can customize this behavior here.
