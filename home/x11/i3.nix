@@ -37,10 +37,13 @@ in
         "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show drun";
 
         # volume adjust
-        "XF86AudioRaiseVolume" = "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" = "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioRaiseVolume" =
+          "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" =
+          "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-volume @DEFAULT_SINK@ -5%";
         "XF86AudioMute" = "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-sink-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioMicMute" = "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86AudioMicMute" =
+          "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-source-mute @DEFAULT_SOURCE@ toggle";
 
         # media player
         "XF86AudioPlay" = "exec playerctl play-pause";
@@ -48,8 +51,8 @@ in
         "XF86AudioPrev" = "exec playerctl previous";
 
         # backlight
-        "XF86MonBrightnessUp" = "exec light -A 5";
-        "XF86MonBrightnessDown" = "exec light -U 5";
+        "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 5";
+        "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 5";
 
         # kill window
         "${mod}+Shift+q" = "kill";
@@ -122,7 +125,8 @@ in
         # reload config
         "${mod}+Shift+c" = "reload";
         "${mod}+Shift+r" = "restart";
-        "${mod}+Shift+e" = "exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'";
+        "${mod}+Shift+e" =
+          "exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'";
 
         # switch mode
         "${mod}+r" = "mode resize";
@@ -130,12 +134,14 @@ in
         "${mod}+Shift+u" = "mode system";
 
         # Dunst
-        "${mod}+n" = "exec dunstctl set-paused toggle";
+        "${mod}+n" = "exec ${lib.getExe' pkgs.dunst "dunstctl"} set-paused toggle";
 
         # screenshots
-        "Print --release" = "exec scrot -s - | xclip -selection clipboard -target image/png";
+        "Print --release" =
+          "exec ${lib.getExe pkgs.scrot} -s - | ${lib.getExe pkgs.xclip} -selection clipboard -target image/png";
 
-        "Shift+Print --release" = "exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`'";
+        "Shift+Print --release" =
+          "exec ${lib.getExe pkgs.scrot} -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && ${lib.getExe pkgs.xclip} -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`'";
       };
 
       modes = {
@@ -269,7 +275,7 @@ in
           notification = false;
         }
         {
-          command = "${pkgs.nitrogen}/bin/nitrogen --restore &";
+          command = "${lib.getExe pkgs.nitrogen} --restore &";
           always = true;
         }
         {
