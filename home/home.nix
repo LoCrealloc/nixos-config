@@ -7,13 +7,15 @@
 }:
 {
   imports = [
-    ./kitty.nix
-    ./zsh.nix
-    ./git.nix
-    (if conf.window-system == "x11" then ./x11 else ./wayland)
-    ./gtk.nix
-    ./neovim
+    ./chromium.nix
     ./dunst.nix
+    ./git.nix
+    ./gtk.nix
+    ./kitty.nix
+    ./mime.nix
+    ./neovim
+    ./zsh.nix
+    (if conf.window-system == "x11" then ./x11 else ./wayland)
   ];
 
   programs.home-manager.enable = true;
@@ -55,7 +57,7 @@
     firefox
     librewolf
     tor-browser-bundle-bin
-    chromium
+    #chromium
 
     # media
     playerctl
