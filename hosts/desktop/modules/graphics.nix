@@ -1,19 +1,19 @@
 { pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.amd
+  ];
+
   hardware.graphics = {
-    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
     enable = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [
+    "amdgpu"
+  ];
 
-  hardware.nvidia = {
-    open = true;
-
-    modesetting.enable = true;
-    powerManagement = {
-      enable = true;
-      #finegrained = true;
-    };
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "radeonsi";
+    WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
   };
 }
