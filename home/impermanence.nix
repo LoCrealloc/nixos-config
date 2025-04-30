@@ -9,9 +9,10 @@
 
       ".config/dconf"
       ".config/sops"
-      ".local/share/steam"
+      ".local/share/Steam"
       ".thunderbird"
       ".librewolf"
+      ".local/share/Colossal Order/Cities_Skylines"
     ];
     files = [
     ];
@@ -24,6 +25,7 @@
       ".config/Signal"
       ".config/spotify"
       ".cache/spotify"
+      ".steam"
     ];
     files = [
     ];
