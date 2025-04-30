@@ -12,6 +12,7 @@
     ./git.nix
     ./gtk.nix
     ./kitty.nix
+    ./librewolf.nix
     ./mime.nix
     ./neovim
     ./zsh.nix
@@ -48,7 +49,7 @@
 
     # communication
     discord
-    signal-desktop
+    signal-desktop-source
     thunderbird
     weechat
     element-desktop
