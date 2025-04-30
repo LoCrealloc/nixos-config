@@ -23,6 +23,7 @@
     wineWowPackages.stable
     man-pages
     man-pages-posix
+    libva-utils
   ];
 
   documentation.dev.enable = true;
