@@ -13,6 +13,9 @@
       ".thunderbird"
       ".librewolf"
       ".local/share/Colossal Order/Cities_Skylines"
+
+      ".local/share/cura"
+      ".config/cura"
     ];
     files = [
     ];
