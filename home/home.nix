@@ -44,8 +44,9 @@
   home.packages = with pkgs; [
     netbird-ui
 
-    pkgs-stable.cura
+    #pkgs-stable.cura
     pkgs-stable.iamb
+    cura-appimage
 
     # communication
     discord
