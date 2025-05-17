@@ -29,6 +29,7 @@
       ".config/spotify"
       ".cache/spotify"
       ".steam"
+      ".local/share/Anki2"
     ];
     files = [
     ];
