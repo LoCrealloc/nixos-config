@@ -5,17 +5,6 @@ _: {
   ageKey = "/persistent/data/home/loc/.config/sops/age/keys.txt";
 
   hostConfig = {
-
-    services.openssh = {
-      enable = true;
-      openFirewall = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = false;
-        AllowUsers = [ "loc" ];
-      };
-    };
-
     boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/c9442104-38ea-45a6-974a-16c8d0034fd0";
 
     system.stateVersion = "24.11";
