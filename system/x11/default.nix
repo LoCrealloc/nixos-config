@@ -28,4 +28,10 @@
       locker = "${scripts.i3lock}";
     };
   };
+
+  programs.i3lock = {
+    enable = true;
+    package = pkgs.i3lock-color;
+    u2fSupport = true;
+  };
 }
