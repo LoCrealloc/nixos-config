@@ -13,6 +13,7 @@
       ".thunderbird"
       ".librewolf"
       ".local/share/Colossal Order/Cities_Skylines"
+      ".electrum-ltc"
 
       ".local/share/cura"
       ".config/cura"
