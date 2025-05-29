@@ -42,11 +42,7 @@
   };
 
   home.packages = with pkgs; [
-    netbird-ui
-
-    #pkgs-stable.cura
     pkgs-stable.iamb
-    cura-appimage
 
     # communication
     discord
@@ -85,7 +81,7 @@
     udisks
 
     # development
-    python310
+    python313
     cargo
     rustc
     nodejs
@@ -122,7 +118,7 @@
     #tone
 
     # 3d printing / electronics
-    #cura
+    cura-appimage
     freecad
     openscad
     kicad
@@ -130,6 +126,7 @@
 
     # miscellaneous
     monero-gui
+    electrum-ltc
     nautilus
     xclip
     scrot
