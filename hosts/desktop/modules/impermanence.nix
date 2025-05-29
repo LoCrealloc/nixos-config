@@ -10,6 +10,7 @@
     "/persistent/cache" = {
       directories = [
         "/var/lib/bluetooth"
+        "/var/lib/libvirt"
       ];
       hideMounts = false;
       users.loc = (import ../../../home/impermanence.nix).cache;
