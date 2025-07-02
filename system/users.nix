@@ -27,7 +27,9 @@
     ];
     hashedPasswordFile = config.sops.secrets."user/hashedPassword".path;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvFUhkhp13FXwFfbBrAEMHWjBbo6pNhKPwp12DAoWS+"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAvFUhkhp13FXwFfbBrAEMHWjBbo6pNhKPwp12DAoWS+ loc@locs-thinkbook"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINeSROnV/rwwD0TuUQsksyfTvB2/u843GtHKbhhY+7vE loc@locs-desktop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAqVIzjqnBoyY7ypBeWVQezjuTtkC8VCi1zr9IE3ajXu loc@locs-thinkpad"
     ];
   };
 

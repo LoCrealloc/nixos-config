@@ -47,8 +47,8 @@ in
         "XF86AudioPrev" = "exec playerctl previous";
 
         # backlight
-        "XF86MonBrightnessUp" = "exec light -A 5";
-        "XF86MonBrightnessDown" = "exec light -U 5";
+        "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 5";
+        "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 5";
 
         # kill window
         "${mod}+Shift+q" = "kill";
@@ -256,19 +256,7 @@ in
 
       startup = [
         {
-          command = "thunderbird";
-          always = false;
-        }
-        {
-          command = "discord &";
-          always = false;
-        }
-        {
-          command = "swaymsg 'workspace 2; exec element-desktop &'";
-          always = false;
-        }
-        {
-          command = "swaymsg 'workspace 2; exec signal-desktop &'";
+          command = "swaymsg 'workspace 10'; exec thunderbird &";
           always = false;
         }
         {
@@ -288,6 +276,7 @@ in
           tap = "enabled";
           natural_scroll = "enabled";
           pointer_accel = "0.9";
+          scroll_method = "two_finger";
         };
         "type:mouse" = {
           pointer_accel = "0.9";
