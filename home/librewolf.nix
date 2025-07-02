@@ -20,7 +20,7 @@ let
         '';
         setDefaultSearchEngine = "DuckDuckGo";
         extensionsInstall = ''
-          ["https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"]
+          ["https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi","https://addons.mozilla.org//firefox/downloads/latest/bitwarden-password-manager/latest.xpi"]
         '';
       };
       search = {
