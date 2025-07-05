@@ -126,6 +126,10 @@ in
 
         # Dunst
         "${mod}+n" = "exec dunstctl set-paused toggle";
+
+        "Print --release" = "exec ${lib.getExe pkgs.flameshot} gui --accept-on-select --clipboard";
+
+        "Shift+Print --release" = "exec ${lib.getExe pkgs.flameshot} gui --clipboard";
       };
 
       modes = {
