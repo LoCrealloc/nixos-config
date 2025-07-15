@@ -27,29 +27,29 @@ require("obsidian").setup({
 
   -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
   -- way then set 'mappings = {}'.
-  mappings = {
-    -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-    ["gf"] = {
-      action = function()
-        return require("obsidian").util.gf_passthrough()
-      end,
-      opts = { noremap = false, expr = true, buffer = true },
-    },
-    -- Toggle check-boxes.
-    ["<C-t>"] = {
-      action = function()
-        return require("obsidian").util.toggle_checkbox()
-      end,
-      opts = { buffer = true },
-    },
-    -- Smart action depending on context, either follow link or toggle checkbox.
-    ["<C-CR>"] = {
-      action = function()
-        return require("obsidian").util.smart_action()
-      end,
-      opts = { buffer = true, expr = true },
-    }
-  },
+  --mappings = {
+  --  -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+  --  ["gf"] = {
+  --    action = function()
+  --      return require("obsidian").util.gf_passthrough()
+  --    end,
+  --    opts = { noremap = false, expr = true, buffer = true },
+  --  },
+  --  -- Toggle check-boxes.
+  --  ["<C-t>"] = {
+  --    action = function()
+  --      return require("obsidian").util.toggle_checkbox()
+  --    end,
+  --    opts = { buffer = true },
+  --  },
+  --  -- Smart action depending on context, either follow link or toggle checkbox.
+  --  ["<C-CR>"] = {
+  --    action = function()
+  --      return require("obsidian").util.smart_action()
+  --    end,
+  --    opts = { buffer = true, expr = true },
+  --  }
+  --},
 
   new_notes_location = "current_dir",
 
@@ -147,8 +147,6 @@ require("obsidian").setup({
     vim.fn.jobstart({"xdg-open", url})  -- linux
   end,
 
-  -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
-  open_app_foreground = false,
 
   picker = {
     -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
