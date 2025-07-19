@@ -46,7 +46,7 @@
 
     # communication
     discord
-    signal-desktop-source
+    signal-desktop
     thunderbird
     weechat
     element-desktop
@@ -69,7 +69,6 @@
     # infrastructure
     gnupg
     pinentry-curses
-    networkmanager-openvpn
     networkmanagerapplet
     #nextcloud-client
     rofi
@@ -102,7 +101,7 @@
     comma
 
     # media editing
-    darktable
+    pkgs-stable.darktable
     gimp
     nomacs
     obs-studio
@@ -142,7 +141,7 @@
 
     # documents
     libreoffice
-    texlive.combined.scheme-full
+    pkgs-stable.texlive.combined.scheme-full
     mupdf
 
     # uni
@@ -172,10 +171,10 @@
     prismlauncher
 
     # ham radio
-    gnuradio
-    gqrx
+    #gnuradio
+    #gqrx
     fldigi
-    gpredict
+    pkgs-stable.gpredict
   ];
 
   services.network-manager-applet.enable = true;
