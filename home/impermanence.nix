@@ -4,6 +4,7 @@
       "flake"
       "Documents"
       "Desktop"
+      "Pictures"
       ".gnupg"
       ".ssh"
 
@@ -14,6 +15,8 @@
       ".librewolf"
       ".local/share/Colossal Order/Cities_Skylines"
       ".electrum-ltc"
+      ".config/weechat"
+      ".local/share/weechat"
 
       ".local/share/cura"
       ".config/cura"
@@ -31,6 +34,8 @@
       ".cache/spotify"
       ".steam"
       ".local/share/Anki2"
+      ".local/share/lutris"
+      "Games"
     ];
     files = [
     ];
