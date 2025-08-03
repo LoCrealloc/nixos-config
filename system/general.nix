@@ -19,11 +19,15 @@
     glxinfo
     qemu
     libvirt
-    lutris
-    wineWowPackages.stable
     man-pages
     man-pages-posix
     libva-utils
+    vulkan-tools
+
+    lutris
+    wineWowPackages.stable
+    winetricks
+    dxvk
   ];
 
   documentation.dev.enable = true;
