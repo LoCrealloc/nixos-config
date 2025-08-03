@@ -23,6 +23,7 @@ let
         "steam-unwrapped"
         "nvidia-x11"
         "nvidia-settings"
+        "xow_dongle-firmware"
       ];
   };
 
@@ -48,7 +49,6 @@ nixpkgs.lib.nixosSystem {
     }
     sops-nix.nixosModules.sops
     impermanence.nixosModules.impermanence
-
 
     conf.hostConfig
     conf.hardware-configuration
