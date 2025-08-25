@@ -1,4 +1,6 @@
 require("obsidian").setup({
+  legacy_commands = false,
+
   workspaces = {
     {
       name = "Uni",
@@ -189,11 +191,11 @@ require("obsidian").setup({
     ---@param note obsidian.Note
     enter_note = function(client, note)
 		if os.execute("[ \"$(pgrep -fl obsidian | grep electron | wc -l)\" = '0' ]") ~= 0 and vim.fn.filereadable(tostring(note.path)) ~= 0 then
-			vim.cmd("ObsidianOpen " .. tostring(note.path))
+			vim.cmd("Obsidian open " .. tostring(note.path))
 		end
 
 		vim.keymap.del("n", "ff")
-		vim.keymap.set("n", "ff", ":ObsidianQuickSwitch<CR>")
+		vim.keymap.set("n", "ff", ":Obsidian quick_switch<CR>")
 	end,
 
     -- Runs anytime you leave the buffer for a note.
