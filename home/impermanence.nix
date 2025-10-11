@@ -20,6 +20,10 @@
 
       ".local/share/cura"
       ".config/cura"
+
+      ".config/FreeCAD"
+      ".local/share/FreeCAD"
+      ".FreeCAD"
     ];
     files = [
     ];
