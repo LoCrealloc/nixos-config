@@ -15,7 +15,7 @@
 
         horizontal-pad = "12";
         vertical-pad = "12";
-        inner-pad = "3";
+        inner-pad = "4";
 
         line-height = "22";
 
@@ -38,7 +38,7 @@
       };
 
       border = {
-        width = "3";
+        width = "1.5";
         radius = "1";
       };
 
