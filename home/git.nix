@@ -1,7 +1,7 @@
 {
   programs.git = {
     enable = true;
-    settings.usee = {
+    settings.user = {
       name = "LoCrealloc";
       email = "loc@locrealloc.de";
     };
