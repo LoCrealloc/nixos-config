@@ -1,8 +1,10 @@
 {
   programs.git = {
     enable = true;
-    userName = "LoCrealloc";
-    userEmail = "loc@locrealloc.de";
+    settings.usee = {
+      name = "LoCrealloc";
+      email = "loc@locrealloc.de";
+    };
     signing = {
       signByDefault = true;
       key = "LoCrealloc <loc@locrealloc.de>";
