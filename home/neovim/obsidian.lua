@@ -6,10 +6,6 @@ require("obsidian").setup({
       name = "Uni",
       path = "~/Documents/obsidian",
     },
-	{
-	  name = "Amateurfunk",
-	  path = "~/Documents/Amateurfunk"
-	}
   },
 
   log_level = vim.log.levels.INFO,

@@ -19,6 +19,8 @@
       jdt-language-server
       rust-analyzer
       haskell-language-server
+      gitlab-ci-ls
+      terraform-ls
 
       prettierd
       isort
@@ -56,11 +58,10 @@
       set wildmode=longest:full
     '';
 
-    extraLuaConfig =
-      ''
-        vim.opt.inccommand = "split"
-      ''
-      + builtins.readFile ./tabstops.lua;
+    extraLuaConfig = ''
+      vim.opt.inccommand = "split"
+    ''
+    + builtins.readFile ./tabstops.lua;
 
     plugins = with pkgs.vimPlugins; [
       {
@@ -138,14 +139,33 @@
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-          local lsp = require "lspconfig"
-          lsp.nixd.setup(coq.lsp_ensure_capabilities())
-          lsp.pyright.setup(coq.lsp_ensure_capabilities())
-          lsp.ccls.setup(coq.lsp_ensure_capabilities())
-          lsp.marksman.setup(coq.lsp_ensure_capabilities())
-          lsp.jdtls.setup(coq.lsp_ensure_capabilities())
-          lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities())
-          lsp.hls.setup(coq.lsp_ensure_capabilities())
+          vim.lsp.config("nixd", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("nixd")
+
+          vim.lsp.config("pyright", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("pyright")
+
+          vim.lsp.config("ccls", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("ccls")
+
+          vim.lsp.config("marksman", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("marksman")
+
+          vim.lsp.config("jdtls", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("jdtls")
+
+          vim.lsp.config("rust_analyzer", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("rust_analyzer")
+
+          vim.lsp.config("hls", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("hls")
+
+          vim.lsp.config("gitlab_ci_ls", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("gitlab_ci_ls")
+
+          vim.lsp.config("terraformls", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("terraformls")
+
 
           vim.opt.updatetime = 1000
 
