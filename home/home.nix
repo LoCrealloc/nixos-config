@@ -138,6 +138,7 @@
     pdf2svg
     newsflash
     wireshark
+    unison
 
     # documents
     libreoffice
