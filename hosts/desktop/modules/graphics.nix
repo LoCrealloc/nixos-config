@@ -6,7 +6,7 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = [ pkgs.amdvlk ];
+    #extraPackages = [ pkgs.amdvlk ];
   };
 
   services.xserver.videoDrivers = [
