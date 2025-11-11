@@ -56,6 +56,9 @@
       nn <esc> :noh<cr>
 
       set wildmode=longest:full
+
+      set number
+      set relativenumber
     '';
 
     extraLuaConfig = ''
