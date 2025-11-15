@@ -16,7 +16,7 @@
     git
     pciutils
     vim
-    glxinfo
+    mesa-demos
     qemu
     libvirt
     man-pages
@@ -40,7 +40,6 @@
     packages = [
       pkgs.platformio-core
       pkgs.openocd
-      pkgs.android-udev-rules
     ];
   };
 }
