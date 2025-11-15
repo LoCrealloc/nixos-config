@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 let
@@ -127,9 +128,10 @@ in
         # Dunst
         "${mod}+n" = "exec dunstctl set-paused toggle";
 
-        "Print --release" = "exec ${lib.getExe pkgs.flameshot} gui --accept-on-select --clipboard";
+        "Print --release" =
+          "exec ${lib.getExe config.services.flameshot.package} gui --accept-on-select --clipboard &";
 
-        "Shift+Print --release" = "exec ${lib.getExe pkgs.flameshot} gui --clipboard";
+        "Shift+Print --release" = "exec ${lib.getExe config.services.flameshot.package} gui --clipboard";
       };
 
       modes = {
