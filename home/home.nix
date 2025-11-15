@@ -54,7 +54,7 @@
     # browser
     firefox
     librewolf
-    tor-browser-bundle-bin
+    tor-browser
     #chromium
 
     # media
