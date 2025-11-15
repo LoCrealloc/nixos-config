@@ -166,7 +166,7 @@ require("obsidian").setup({
     -- Runs anytime you enter the buffer for a note.
     ---@param client obsidian.Client
     ---@param note obsidian.Note
-    enter_note = function(client, note)
+    enter_note = function(note)
 		if os.execute("[ \"$(pgrep -fl obsidian | grep electron | wc -l)\" = '0' ]") ~= 0 and vim.fn.filereadable(tostring(note.path)) ~= 0 then
 			vim.cmd("Obsidian open " .. tostring(note.path))
 		end
