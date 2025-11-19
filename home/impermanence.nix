@@ -40,6 +40,7 @@
       ".local/share/Anki2"
       ".local/share/lutris"
       "Games"
+      ".unison"
     ];
     files = [
     ];
