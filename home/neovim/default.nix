@@ -206,6 +206,7 @@
             typescript
             pkgs.tree-sitter-grammars.tree-sitter-norg-meta
             haskell
+            asm
           ]
         );
         type = "lua";
