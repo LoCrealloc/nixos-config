@@ -190,6 +190,7 @@
             vim
             markdown_inline
             latex
+            bibtex
             c
             rust
             bash
