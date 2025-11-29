@@ -26,8 +26,8 @@
 
     lutris
     wineWowPackages.stable
-    winetricks
-    dxvk
+    #winetricks
+    #dxvk
   ];
 
   documentation.dev.enable = true;
