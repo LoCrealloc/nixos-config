@@ -27,11 +27,16 @@ let
       ];
   };
 
+  pkgs-stable = import nixpkgs-stable {
+    inherit system;
+  };
+
   scripts = import ../scripts.nix { inherit pkgs; }; # i need to think of a better way for this mess
 
   specialArgs = {
-    inherit scripts;
-  } // inputs;
+    inherit scripts pkgs-stable;
+  }
+  // inputs;
 in
 nixpkgs.lib.nixosSystem {
   inherit system pkgs specialArgs;
@@ -40,8 +45,7 @@ nixpkgs.lib.nixosSystem {
     home-manager.nixosModules.home-manager
     {
       home-manager.extraSpecialArgs = {
-        inherit conf scripts;
-        pkgs-stable = import nixpkgs-stable { inherit system; };
+        inherit conf scripts pkgs-stable;
       };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
@@ -68,5 +72,6 @@ nixpkgs.lib.nixosSystem {
     ./users.nix
     ./virtualisation.nix
     (if conf.window-system == "x11" then ./x11 else ./wayland)
-  ] ++ conf.host-modules;
+  ]
+  ++ conf.host-modules;
 }

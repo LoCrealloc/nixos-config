@@ -125,7 +125,7 @@
 
     # miscellaneous
     monero-gui
-    electrum-ltc
+    pkgs-stable.electrum-ltc
     nautilus
     xclip
     scrot
