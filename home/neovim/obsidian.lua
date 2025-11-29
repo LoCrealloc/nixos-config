@@ -146,14 +146,13 @@ require("obsidian").setup({
     },
   },
 
-  -- Optional, sort search results by "path", "modified", "accessed", or "created".
-  -- The recommend value is "modified" and `true` for `sort_reversed`, which means, for example,
-  -- that `:ObsidianQuickSwitch` will show the notes sorted by latest modified time
-  sort_by = "modified",
-  sort_reversed = true,
 
   -- Set the maximum number of lines to read from notes on disk when performing certain searches.
-  search_max_lines = 1000,
+  search = {
+	max_lines = 1000,
+  	sort_by = "modified",
+  	sort_reversed = true,
+  },
 
   open_notes_in = "current",
 
