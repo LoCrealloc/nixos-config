@@ -61,6 +61,7 @@ nixpkgs.lib.nixosSystem {
     ./cups.nix
     ./font.nix
     ./general.nix
+    ./keyring.nix
     ./layout.nix
     ./networking.nix
     ./nix.nix
