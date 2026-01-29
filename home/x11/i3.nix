@@ -270,11 +270,6 @@ in
 
       startup = [
         {
-          command = "/home/loc/.config/xrandr/xrandrconfig.sh 2";
-          always = true;
-          notification = false;
-        }
-        {
           command = "${lib.getExe pkgs.nitrogen} --restore &";
           always = true;
         }
