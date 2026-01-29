@@ -25,7 +25,7 @@
           sopsFile = /${connections}/${name};
           path = "/etc/NetworkManager/system-connections/${name}.nmconnection";
         };
-      }) (builtins.attrNames (builtins.removeAttrs (builtins.readDir connections) [ ".gitkeep" ]))
+      }) (builtins.attrNames (removeAttrs (builtins.readDir connections) [ ".gitkeep" ]))
     );
 
   networking.nameservers = [ "9.9.9.9" ];
