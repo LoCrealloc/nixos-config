@@ -1,7 +1,9 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  pkgs-stable,
+  lib,
+  config,
+  ...
 }:
 let
   colors = {
@@ -21,7 +23,7 @@ in
 {
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override {
+    package = pkgs-stable.polybar.override {
       i3Support = true;
       githubSupport = true;
       pulseSupport = true;
@@ -57,5 +59,6 @@ in
     '';
   };
 
-  systemd.user.services.polybar.Service.Environment = lib.mkForce "PATH=${config.services.polybar.package}/bin:${pkgs.coreutils}/bin:${pkgs.gnugrep}/bin:/run/wrappers/bin";
+  systemd.user.services.polybar.Service.Environment =
+    lib.mkForce "PATH=${config.services.polybar.package}/bin:${pkgs.coreutils}/bin:${pkgs.gnugrep}/bin:/run/wrappers/bin";
 }
