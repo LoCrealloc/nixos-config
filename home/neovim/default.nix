@@ -185,40 +185,33 @@
       {
         plugin = nvim-treesitter.withPlugins (
           plugins: with plugins; [
+            vim
             nix
             python
-            vim
-            markdown_inline
+            bash
+            lua
+            haskell
+            java
             latex
             bibtex
             c
+            asm
             rust
-            bash
-            dockerfile
-            svelte
+            linkerscript
             gitignore
+            dockerfile
             yaml
             json
             html
-            css
-            java
             javascript
             typescript
-            pkgs.tree-sitter-grammars.tree-sitter-norg-meta
-            haskell
-            asm
+            svelte
+            css
+            markdown_inline
           ]
         );
         type = "lua";
-        config = ''
-          require'nvim-treesitter.configs'.setup {
-          	highlight = {
-          		enable = true,
-
-          		additional_vim_regex_highlighting = false,
-          	},
-          }	
-        '';
+        config = builtins.readFile ./treesitter.lua;
       }
       {
         plugin = markdown-preview-nvim;
