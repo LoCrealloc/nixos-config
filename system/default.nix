@@ -24,6 +24,7 @@ let
         "nvidia-x11"
         "nvidia-settings"
         "xow_dongle-firmware"
+        "xone-dongle-firmware"
       ];
   };
 
