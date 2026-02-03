@@ -111,22 +111,6 @@ require("obsidian").setup({
     time_format = "%H:%M",
   },
 
-  -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
-  -- URL it will be ignored but you can customize this behavior here.
-  ---@param url string
-  follow_url_func = function(url)
-    -- Open the URL in the default web browser.
-    vim.ui.open(url) -- need Neovim 0.10.0+
-  end,
-
-  -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
-  -- file it will be ignored but you can customize this behavior here.
-  ---@param img string
-  follow_img_func = function(img)
-    vim.fn.jobstart({"xdg-open", url})  -- linux
-  end,
-
-
   picker = {
     -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
     name = "telescope.nvim",
@@ -201,7 +185,7 @@ require("obsidian").setup({
   -- Specify how to handle attachments.
   attachments = {
     confirm_img_paste = false,
-    img_folder = "assets/images",
+    folder = "assets/images",
   },
 })
 
