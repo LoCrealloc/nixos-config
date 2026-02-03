@@ -2,20 +2,20 @@ vim.g.coq_settings = {
 	auto_start = false,
 	display = {
 		statusline = {
-			helo = false
+			helo = false,
 		},
 		ghost_text = {
-			enabled = false
+			enabled = false,
 		},
 
 		pum = {
-			source_context = {"",""}
+			source_context = { "", "" },
 		},
 
 		preview = {
 			x_max_len = 120,
 		},
-	}
+	},
 }
 
-local coq = require "coq"
+local coq = require("coq")

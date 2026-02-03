@@ -25,8 +25,9 @@
       prettierd
       isort
       black
-      nixfmt-rfc-style
+      nixfmt
       rustfmt
+      stylua
     ];
 
     extraLuaPackages = luaPkgs: [
