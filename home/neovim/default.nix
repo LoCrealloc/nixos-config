@@ -62,7 +62,7 @@
       set relativenumber
     '';
 
-    extraLuaConfig = ''
+    initLua = ''
       vim.opt.inccommand = "split"
     ''
     + builtins.readFile ./tabstops.lua;
