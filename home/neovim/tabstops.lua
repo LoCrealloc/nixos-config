@@ -2,7 +2,7 @@
 vim.api.nvim_create_autocmd(
 	{"BufRead", "BufNewFile", "BufEnter"},
 	{
-		pattern={"*.hs", "*.nix"}, 
+		pattern={"*.hs", "*.nix", "*.lua"}, 
 		callback=function() 
 			vim.api.nvim_set_option_value("expandtab", true, {})
 			vim.api.nvim_set_option_value("tabstop", 2, {})
@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
 	"BufLeave",
 	{
-		pattern={"*.hs", "*.nix"}, 
+		pattern={"*.hs", "*.nix", "*.lua"}, 
 		callback=function() 
 			vim.api.nvim_set_option_value("expandtab", false, {})
 			vim.api.nvim_set_option_value("tabstop", 4, {})
