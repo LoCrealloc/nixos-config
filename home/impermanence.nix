@@ -15,6 +15,8 @@
       ".librewolf"
       ".local/share/Colossal Order/Cities_Skylines"
       ".electrum-ltc"
+      ".config/monero-project"
+      ".bitmonero"
       ".config/weechat"
       ".local/share/weechat"
 
