@@ -142,7 +142,7 @@
 
     # documents
     libreoffice
-    pkgs-stable.texlive.combined.scheme-full
+    texlive.combined.scheme-full
     mupdf
 
     # uni
