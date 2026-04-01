@@ -6,7 +6,7 @@
 
   hardware.graphics = {
     enable = true;
-    enable32Bit = true;
+    #enable32Bit = true;
     #extraPackages = [ pkgs.amdvlk ];
   };
 
@@ -18,4 +18,5 @@
     LIBVA_DRIVER_NAME = "radeonsi";
     WLR_DRM_DEVICES = "/dev/dri/card0:/dev/dri/card1";
   };
+
 }
