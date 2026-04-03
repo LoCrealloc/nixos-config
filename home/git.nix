@@ -8,6 +8,7 @@
     signing = {
       signByDefault = true;
       key = "LoCrealloc <loc@locrealloc.de>";
+      format = "openpgp";
     };
   };
 }
