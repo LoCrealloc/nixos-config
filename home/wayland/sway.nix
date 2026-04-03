@@ -48,8 +48,8 @@ in
         "XF86AudioPrev" = "exec playerctl previous";
 
         # backlight
-        "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.light} -A 5";
-        "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.light} -U 5";
+        "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%-";
+        "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";
 
         # kill window
         "${mod}+Shift+q" = "kill";
