@@ -14,6 +14,7 @@
       ".thunderbird"
       ".librewolf"
       ".local/share/Colossal Order/Cities_Skylines"
+      ".config/unity3d" # Overcooked 2
       ".electrum-ltc"
       ".config/monero-project"
       ".bitmonero"
