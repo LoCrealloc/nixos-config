@@ -1,6 +1,6 @@
 -- Haskell, Nix
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "BufEnter" }, {
-	pattern = { "*.hs", "*.nix", "*.lua" },
+	pattern = { "*.hs", "*.nix", "*.lua", "*.yaml", "*.yml" },
 	callback = function()
 		vim.api.nvim_set_option_value("expandtab", true, {})
 		vim.api.nvim_set_option_value("tabstop", 2, {})
@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile", "BufEnter" }, {
 })
 
 vim.api.nvim_create_autocmd("BufLeave", {
-	pattern = { "*.hs", "*.nix", "*.lua" },
+	pattern = { "*.hs", "*.nix", "*.lua", "*.yaml", "*.yml" },
 	callback = function()
 		vim.api.nvim_set_option_value("expandtab", false, {})
 		vim.api.nvim_set_option_value("tabstop", 4, {})

@@ -21,6 +21,8 @@
       haskell-language-server
       gitlab-ci-ls
       terraform-ls
+      ansible-language-server
+      jinja-lsp
 
       prettierd
       isort
@@ -170,6 +172,12 @@
           vim.lsp.config("terraformls", coq.lsp_ensure_capabilities())
           vim.lsp.enable("terraformls")
 
+          vim.lsp.config("ansible-language-server", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("ansible-language-server")
+
+          vim.lsp.config("jinja_lsp", coq.lsp_ensure_capabilities())
+          vim.lsp.enable("jinja_lsp")
+
 
           vim.opt.updatetime = 1000
 
@@ -209,6 +217,8 @@
             svelte
             css
             markdown_inline
+            jinja
+            jinja_inline
           ]
         );
         type = "lua";

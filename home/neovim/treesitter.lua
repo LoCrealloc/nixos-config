@@ -24,6 +24,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		"css",
 		"vim",
 		"tf",
+		"jinja",
+		"jinja_inline",
 	},
 	callback = function()
 		vim.treesitter.start()
