@@ -27,6 +27,8 @@
       ".config/FreeCAD"
       ".local/share/FreeCAD"
       ".FreeCAD"
+
+      ".config/Gpredict"
     ];
     files = [
     ];
