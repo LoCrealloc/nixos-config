@@ -25,7 +25,17 @@ let
         "nvidia-settings"
         "xow_dongle-firmware"
         "xone-dongle-firmware"
+        "coq.artifacts"
+        "coq.thirdparty"
       ];
+    overlays = [
+      # https://github.com/NixOS/nixpkgs/issues/514113
+      (_: prev: {
+        openldap = prev.openldap.overrideAttrs {
+          doCheck = false;
+        };
+      })
+    ];
   };
 
   pkgs-stable = import nixpkgs-stable {
