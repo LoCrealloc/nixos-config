@@ -31,7 +31,7 @@ in
       };
 
       keybindings = lib.mkOptionDefault {
-        "${mod}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
+        "${mod}+d" = "exec ${lib.getExe pkgs.fuzzel}";
 
         # volume adjust
         "XF86AudioRaiseVolume" =
@@ -43,9 +43,9 @@ in
           "exec ${lib.getExe' pkgs.pulseaudio "pactl"} set-source-mute @DEFAULT_SOURCE@ toggle";
 
         # media player
-        "XF86AudioPlay" = "exec playerctl play-pause";
-        "XF86AudioNext" = "exec playerctl next";
-        "XF86AudioPrev" = "exec playerctl previous";
+        "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+        "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
+        "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
 
         # backlight
         "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%-";
