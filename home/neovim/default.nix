@@ -123,8 +123,6 @@
           nnoremap tc :VimtexCompile<CR>
         '';
       }
-      vim-ccls
-      nvim-jdtls
       coq-artifacts
       {
         plugin = coq_nvim;
