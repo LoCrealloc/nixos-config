@@ -113,7 +113,7 @@
     #scribus
     #inkscape
     audacity
-    #kdenlive
+    #kdePackages.kdenlive
     #tone
 
     # 3d printing / electronics
@@ -172,8 +172,8 @@
     prismlauncher
 
     # ham radio
-    #gnuradio
-    #gqrx
+    gnuradio
+    gqrx
     fldigi
     pkgs-stable.gpredict
   ];
