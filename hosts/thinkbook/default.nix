@@ -6,6 +6,7 @@ _: {
 
   hostConfig = {
     services.xserver.videoDrivers = [ "amdgpu" ];
+    hardware.graphics.enable32Bit = true;
 
     boot.loader.grub.useOSProber = true;
 
