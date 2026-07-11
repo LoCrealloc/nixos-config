@@ -15,7 +15,7 @@
       nixd
       pyright
       marksman
-      ccls
+      #clang-tools
       jdt-language-server
       rust-analyzer
       haskell-language-server
@@ -36,6 +36,7 @@
       luaPkgs.pathlib-nvim # For neorg
       luaPkgs.lua-utils-nvim # For neorg
       luaPkgs.magick
+      luaPkgs.tree-sitter-cli
     ];
 
     extraConfig = ''
@@ -149,8 +150,10 @@
           vim.lsp.config("pyright", coq.lsp_ensure_capabilities())
           vim.lsp.enable("pyright")
 
-          vim.lsp.config("ccls", coq.lsp_ensure_capabilities())
-          vim.lsp.enable("ccls")
+          vim.lsp.config("clangd", coq.lsp_ensure_capabilities({
+            cmd = { 'clangd', '--header-insertion=never' }
+          }))
+          vim.lsp.enable("clangd")
 
           vim.lsp.config("marksman", coq.lsp_ensure_capabilities())
           vim.lsp.enable("marksman")
@@ -186,7 +189,16 @@
           	end,
           })
 
-          vim.keymap.set("i", "<C-o>", function() vim.lsp.buf.code_action({apply=true}) end)
+          -- vim.keymap.set("i", "<C-o>", function() vim.lsp.buf.code_action({apply=true}) end)
+
+
+          local telescope_builtin = require('telescope.builtin')
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition)      -- Go to definition
+          vim.keymap.set('n', 'gr', telescope_builtin.lsp_references)       -- Find references with telescope
+          vim.keymap.set('n', 'K', vim.lsp.buf.hover)             -- Show documentation
+          vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)   -- Rename symbol
+          vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action) -- Code actions
+          vim.keymap.set('n', 'gi', telescope_builtin.lsp_implementations)   -- Go to implementation via telescope
         '';
       }
       {
