@@ -52,8 +52,8 @@
       vim.opt.expandtab = false
       vim.opt.tabstop = 4
 
-      vim.keymap.set("n", "<F3>", vim.cmd.tabn)
-      vim.keymap.set("n", "<F4>", vim.cmd.tabp)
+      vim.keymap.set("n", "<F3>", vim.cmd.tabp)
+      vim.keymap.set("n", "<F4>", vim.cmd.tabn)
       vim.keymap.set("n", "<ESC>", vim.cmd.noh)
     ''
     + builtins.readFile ./tabstops.lua;
