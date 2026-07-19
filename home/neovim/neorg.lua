@@ -5,7 +5,7 @@ require("neorg").setup({
 		["core.concealer"] = {},
 		["core.autocommands"] = {},
 		["core.integrations.image"] = {},
-		["core.integrations.coq_nvim"] = {},
+		--["core.integrations.coq_nvim"] = {},
 		["core.integrations.telescope"] = {
 			config = {
 				insert_file_link = {

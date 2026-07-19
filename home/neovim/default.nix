@@ -101,21 +101,10 @@
           vim.keymap.set("n", "tc", ":VimtexCompile<CR>")
         '';
       }
-      coq-artifacts
       {
-        plugin = coq_nvim;
+        plugin = blink-cmp;
         type = "lua";
-        config = builtins.readFile ./coq_nvim.lua;
-      }
-      {
-        plugin = coq-thirdparty;
-        type = "lua";
-        config = ''
-          require("coq_3p") {
-          	{ src = "nvimlua", short_name = "nLUA", conf_only = false },
-          	{ src = "vimtex",  short_name = "vTEX" },
-          }
-        '';
+        config = builtins.readFile ./blink-cmp.lua;
       }
       {
         plugin = nvim-lspconfig;
