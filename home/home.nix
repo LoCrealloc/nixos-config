@@ -118,7 +118,7 @@
 
     # 3d printing / electronics
     cura-appimage
-    freecad
+    pkgs-stable.freecad
     openscad
     kicad
     xnec2c
@@ -142,7 +142,7 @@
 
     # documents
     libreoffice
-    texlive.combined.scheme-full
+    texliveFull
     mupdf
 
     # uni
