@@ -48,5 +48,8 @@
     [dmenu]
     dmenu_command = fuzzel -d
     wifi_chars = ▂▄▆█
+
+    [dmenu_passphrase]
+    obscure = True
   '';
 }
