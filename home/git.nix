@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     settings.user = {
-      name = "LoCrealloc";
+      name = "LoC";
       email = "loc@locrealloc.de";
     };
     signing = {

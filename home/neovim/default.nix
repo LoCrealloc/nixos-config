@@ -23,6 +23,7 @@
       terraform-ls
       ansible-language-server
       jinja-lsp
+      lua-language-server
 
       prettierd
       isort
@@ -107,6 +108,11 @@
         config = builtins.readFile ./blink-cmp.lua;
       }
       {
+        plugin = gitsigns-nvim;
+        type = "lua";
+        config = builtins.readFile ./gitsigns.lua;
+      }
+      {
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
@@ -132,6 +138,7 @@
 
           vim.lsp.enable("jinja_lsp")
 
+          vim.lsp.enable("lua_ls")
 
           vim.opt.updatetime = 1000
 
