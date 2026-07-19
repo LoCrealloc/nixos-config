@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.neovim = {
     enable = true;
@@ -15,7 +15,7 @@
       nixd
       pyright
       marksman
-      #clang-tools
+      clang-tools
       jdt-language-server
       rust-analyzer
       haskell-language-server
@@ -38,35 +38,22 @@
       luaPkgs.magick
       luaPkgs.tree-sitter-cli
     ];
-
-    extraConfig = ''
-      au VimLeave * set guicursor=a:ver100
-      set guicursor=
-      set number
-
-      set autoindent
-      set noexpandtab
-      set tabstop=4
-      " settings shiftwidth to 0 makes it always use the value of tabstop
-      set shiftwidth=0
-
-      inoremap <F1> <ESC>
-      nnoremap <F1> <ESC>
-      vnoremap <F1> <ESC>
-
-      nnoremap <F3> :tabp<CR>
-      nnoremap <F4> :tabn<CR>
-
-      nn <esc> :noh<cr>
-
-      set wildmode=longest:full
-
-      set number
-      set relativenumber
-    '';
-
     initLua = ''
       vim.opt.inccommand = "split"
+      vim.opt.number = true
+      vim.opt.relativenumber = true
+
+      vim.opt.wildmode = "longest:full"
+
+      -- setting shiftwidth to 0 makes it always use the value of tabstop
+      vim.opt.shiftwidth = 0
+      vim.opt.autoindent = true
+      vim.opt.expandtab = false
+      vim.opt.tabstop = 4
+
+      vim.keymap.set("n", "<F3>", vim.cmd.tabn)
+      vim.keymap.set("n", "<F4>", vim.cmd.tabp)
+      vim.keymap.set("n", "<ESC>", vim.cmd.noh)
     ''
     + builtins.readFile ./tabstops.lua;
 
@@ -107,21 +94,11 @@
       nvim-web-devicons
       {
         plugin = vimtex;
+        type = "lua";
         config = ''
-          let g:vimtex_view_method = 'mupdf'
+          vim.g.vimtex_view_method = "mupdf"
 
-          let g:vimtex_compiler_latexmk = {
-          \ 'options' : [
-          \   '-pdf',
-          \   '-shell-escape',
-          \   '-verbose',
-          \   '-file-line-error',
-          \   '-synctex=1',
-          \   '-interaction=nonstopmode',
-          \ ],
-          \}
-
-          nnoremap tc :VimtexCompile<CR>
+          vim.keymap.set("n", "tc", ":VimtexCompile<CR>")
         '';
       }
       coq-artifacts
@@ -144,39 +121,26 @@
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
-          vim.lsp.config("nixd", coq.lsp_ensure_capabilities())
           vim.lsp.enable("nixd")
 
-          vim.lsp.config("pyright", coq.lsp_ensure_capabilities())
           vim.lsp.enable("pyright")
 
-          vim.lsp.config("clangd", coq.lsp_ensure_capabilities({
-            cmd = { 'clangd', '--header-insertion=never' }
-          }))
           vim.lsp.enable("clangd")
 
-          vim.lsp.config("marksman", coq.lsp_ensure_capabilities())
           vim.lsp.enable("marksman")
 
-          vim.lsp.config("jdtls", coq.lsp_ensure_capabilities())
           vim.lsp.enable("jdtls")
 
-          vim.lsp.config("rust_analyzer", coq.lsp_ensure_capabilities())
           vim.lsp.enable("rust_analyzer")
 
-          vim.lsp.config("hls", coq.lsp_ensure_capabilities())
           vim.lsp.enable("hls")
 
-          vim.lsp.config("gitlab_ci_ls", coq.lsp_ensure_capabilities())
           vim.lsp.enable("gitlab_ci_ls")
 
-          vim.lsp.config("terraformls", coq.lsp_ensure_capabilities())
           vim.lsp.enable("terraformls")
 
-          vim.lsp.config("ansible-language-server", coq.lsp_ensure_capabilities())
           vim.lsp.enable("ansible-language-server")
 
-          vim.lsp.config("jinja_lsp", coq.lsp_ensure_capabilities())
           vim.lsp.enable("jinja_lsp")
 
 
@@ -236,14 +200,10 @@
       }
       {
         plugin = markdown-preview-nvim;
+        type = "lua";
         config = ''
-          autocmd Filetype markdown setlocal tabstop=2
-          autocmd Filetype markdown setlocal autoindent
-          autocmd Filetype markdown setlocal noexpandtab
-          autocmd Filetype markdown setlocal shiftwidth=2
-          let g:mkdp_browser = '${pkgs.librewolf}/bin/librewolf'
-
-          nmap <C-m> <Plug>MarkdownPreviewToggle
+          vim.keymap.set("n", "<C-m>", "MarkdownPreviewToggle")
+          vim.g.mkdp_browser = "${lib.getExe pkgs.librewolf}"
         '';
       }
       {
@@ -291,7 +251,7 @@
           		end,
           	},
           })
-          vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+          vim.keymap.set("n", "-", ":Oil<CR>", { desc = "Open parent directory" })
         '';
       }
       {
