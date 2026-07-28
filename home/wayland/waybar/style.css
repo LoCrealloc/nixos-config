@@ -63,23 +63,16 @@ window#waybar.PCSX2 #window {
 	color: #ff79c6;
 }
 
-#mpd {
+#mode {
 	margin-top: 8px;
 	margin-left: 8px;
 	padding-left: 16px;
 	padding-right: 16px;
 	margin-bottom: 0;
 	border-radius: 26px;
-	background: #282a36;
 	transition: none;
 	color: #4d4d4d;
-	background: #5af78e;
-}
-
-#mpd.disconnected,
-#mpd.stopped {
-	color: #f8f8f2;
-	background: #282a36;
+	background: #bd93f9;
 }
 
 #network {
@@ -153,4 +146,41 @@ window#waybar.PCSX2 #window {
 	transition: none;
 	color: #f8f8f2;
 	background: #282a36;
+}
+
+
+#bluetooth {
+	margin-top: 8px;
+	margin-left: 8px;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-bottom: 0;
+	border-radius: 26px;
+	transition: none;
+	color: #4d4d4d;
+	background: #ff6e67;
+}
+
+#wireplumber {
+	margin-top: 8px;
+	margin-left: 8px;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-bottom: 0;
+	border-radius: 26px;
+	transition: none;
+	color: #4d4d4d;
+	background: #ff6e67;
+}
+
+#mpris {
+	margin-top: 8px;
+	margin-left: 8px;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-bottom: 0;
+	border-radius: 26px;
+	transition: none;
+	color: #4d4d4d;
+	background: #ff6e67;
 }
