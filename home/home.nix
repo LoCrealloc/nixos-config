@@ -65,6 +65,7 @@
     vlc
     sonixd
     spotify
+    helvum
 
     # infrastructure
     gnupg
