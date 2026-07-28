@@ -18,9 +18,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [
     "kvm-amd"
-    "v4l2loopback"
   ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/2c483608-3c3a-41af-96b4-cb12162814e0";
