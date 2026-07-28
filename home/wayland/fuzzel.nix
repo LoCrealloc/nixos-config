@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.fuzzel = {
     enable = true;
@@ -46,7 +51,7 @@
   };
   home.file."${config.xdg.configHome}/networkmanager-dmenu/config.ini".text = ''
     [dmenu]
-    dmenu_command = fuzzel -d
+    dmenu_command = ${lib.getExe pkgs.fuzzel} --dmenu
     wifi_chars = ▂▄▆█
 
     [dmenu_passphrase]
