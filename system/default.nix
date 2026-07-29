@@ -23,6 +23,7 @@ let
         "steam-unwrapped"
         "nvidia-x11"
         "nvidia-settings"
+        "nvidia-kernel-modules"
         "xow_dongle-firmware"
         "xone-dongle-firmware"
         "coq.artifacts"
