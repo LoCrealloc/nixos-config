@@ -11,8 +11,6 @@ let
       sha256 = "sha256-2E+ZRnvqzzS986J0ckrV73J1YqMUodj8bVXVStxcfUg=";
     };
 
-    propagatedUserEnvPkgs = [ pkgs.gtk-engine-murrine ];
-
     installPhase = ''
       runHook preInstall
       mkdir -p $out/share/themes

@@ -165,9 +165,6 @@
     gnugrep
     fastfetch
 
-    # GTK
-    gtk-engine-murrine
-
     # games
     openttd
     prismlauncher
