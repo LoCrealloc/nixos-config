@@ -12,6 +12,7 @@ in
     package = pkgs.flameshot.override { enableWlrSupport = true; };
     settings = {
       General = {
+        disabledTrayIcon = true;
         savePath = screenshotsDir;
         saveAsFileExtension = ".png";
         useJpgForClipboard = false;
