@@ -22,6 +22,9 @@ in
 
       window_alert_on_bell = false;
 
+      scrollbar = "never";
+      momentum_scroll = 0;
+
       foreground = "#ffffff";
       background = "#0f111a";
 
