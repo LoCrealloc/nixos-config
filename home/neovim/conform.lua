@@ -8,6 +8,7 @@ require("conform").setup({
 		rust = { "rustfmt" },
 		bib = { "biber" },
 		lua = { "stylua" },
+		go = { "gofmt" },
 	},
 	format_on_save = function(bufnr)
 		-- Disable with a global or buffer-local variable

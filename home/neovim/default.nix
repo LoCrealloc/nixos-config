@@ -24,6 +24,7 @@
       ansible-language-server
       jinja-lsp
       lua-language-server
+      gopls
 
       prettierd
       isort
@@ -140,6 +141,8 @@
 
           vim.lsp.enable("lua_ls")
 
+          vim.lsp.enable("gopls")
+
           vim.opt.updatetime = 1000
 
           vim.diagnostic.config({ virtual_text = false })
@@ -149,8 +152,7 @@
           	end,
           })
 
-          -- vim.keymap.set("i", "<C-o>", function() vim.lsp.buf.code_action({apply=true}) end)
-
+          vim.keymap.set("i", "<C-o>", function() vim.lsp.buf.code_action({apply=true}) end)
 
           local telescope_builtin = require('telescope.builtin')
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition)      -- Go to definition
