@@ -270,6 +270,10 @@ in
 
       startup = [
         {
+          command = "${lib.getExe pkgs.feh} --bg-max ${../../wallpapers/explosion_purple.jpeg}";
+          always = true;
+        }
+        {
           command = "systemctl --user restart polybar.service";
           always = true;
         }
