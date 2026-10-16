@@ -81,7 +81,7 @@
     udisks
 
     # development
-    python313
+    (python313.withPackages (pypkgs: [ pypkgs.requests ]))
     cargo
     rustc
     nodejs
@@ -121,6 +121,7 @@
     # miscellaneous
     monero-gui
     pkgs-stable.electrum-ltc
+    electrum
     nautilus
     xclip
     scrot
