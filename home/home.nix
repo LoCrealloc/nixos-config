@@ -8,6 +8,7 @@
 {
   imports = [
     ./chromium.nix
+    ./direnv.nix
     ./dunst.nix
     ./git.nix
     ./gtk.nix
@@ -76,7 +77,6 @@
     networkmanager_dmenu
     age
     sops
-    nitrogen
     jq
     udisks
 
@@ -86,14 +86,8 @@
     rustc
     nodejs
     sqlite
-    ccls
-    clang
-    gnumake
-    valgrind
-    gdb
     jdk21
-    ghc
-    stack
+    ghidra
 
     # Nix tools
     nix-output-monitor

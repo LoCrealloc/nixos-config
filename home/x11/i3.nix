@@ -270,10 +270,6 @@ in
 
       startup = [
         {
-          command = "${lib.getExe pkgs.nitrogen} --restore &";
-          always = true;
-        }
-        {
           command = "systemctl --user restart polybar.service";
           always = true;
         }
