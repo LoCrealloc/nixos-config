@@ -17,6 +17,7 @@ let
       pkg:
       builtins.elem (lib.getName pkg) [
         "discord"
+        "discord-unwrapped"
         "spotify"
         "obsidian"
         "steam"
