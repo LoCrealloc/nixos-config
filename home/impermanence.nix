@@ -17,8 +17,9 @@
       ".local/share/PrismLauncher"
       ".config/unity3d" # Overcooked 2
       ".electrum-ltc"
+      ".electrum"
       ".config/monero-project"
-      ".bitmonero"
+      ".monero"
       ".config/weechat"
       ".local/share/weechat"
 
@@ -47,6 +48,7 @@
       ".local/share/lutris"
       "Games"
       ".unison"
+      ".bitmonero"
     ];
     files = [
     ];
