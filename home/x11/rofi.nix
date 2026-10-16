@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
 in
@@ -7,14 +12,14 @@ in
     enable = true;
     font = "Hack Nerd Font Mono 18";
     terminal = "kitty";
-    extraConfig = {
+    settings = {
       modes = "drun,run,ssh,filebrowser,window";
       display-drun = "";
       display-run = "";
       display-ssh = "󰒋";
       display-filebrowser = "󰉋";
       display-window = "";
-      run-shell-command = "alacritty --command {cmd}";
+      run-shell-command = "${lib.getExe pkgs.kitty} {cmd}";
     };
     theme = {
       "*" = {
