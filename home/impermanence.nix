@@ -15,7 +15,7 @@
       ".librewolf"
       ".local/share/Colossal Order/Cities_Skylines"
       ".local/share/PrismLauncher"
-      ".config/unity3d" # Overcooked 2
+      ".config/unity3d" # Overcooked 2, Out of Space, ...
       ".electrum-ltc"
       ".electrum"
       ".config/monero-project"
@@ -49,6 +49,7 @@
       "Games"
       ".unison"
       ".bitmonero"
+      ".local/share/direnv/allow"
     ];
     files = [
     ];
