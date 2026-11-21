@@ -3,6 +3,8 @@ require("conform").setup({
 		python = { "isort", "black" },
 		javascript = { "prettierd" },
 		markdown = { "prettierd" },
+		typescript = { "prettierd" },
+		vue = { "prettierd" },
 		nix = { "nixfmt" },
 		tex = { "latexindent" },
 		rust = { "rustfmt" },

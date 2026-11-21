@@ -25,6 +25,8 @@
       jinja-lsp
       lua-language-server
       gopls
+      vue-language-server
+      typescript-language-server
 
       prettierd
       isort
@@ -143,13 +145,29 @@
 
           vim.lsp.enable("gopls")
 
+          local ts_ls_config = {
+            init_options = {
+              plugins = {
+                {
+                  name = '@vue/typescript-plugin',
+                  location = '${pkgs.vue-language-server}/lib/language-tools/packages/language-server',
+                  languages = { 'vue' },
+                  -- configNamespace = 'typescript',
+                },
+              },
+            },
+            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+          }
+          vim.lsp.config('ts_ls', ts_ls_config)
+          vim.lsp.enable({"ts_ls", "vue_ls"})
+
           vim.opt.updatetime = 1000
 
           vim.diagnostic.config({ virtual_text = false })
           vim.api.nvim_create_autocmd({ "CursorHold" }, {
-          	callback = function()
-          			vim.diagnostic.open_float()
-          	end,
+            callback = function()
+              vim.diagnostic.open_float()
+            end,
           })
 
           vim.keymap.set("i", "<C-o>", function() vim.lsp.buf.code_action({apply=true}) end)
@@ -187,6 +205,7 @@
             javascript
             typescript
             svelte
+            vue
             css
             markdown_inline
             jinja
